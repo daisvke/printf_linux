@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 00:00:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 04:09:58 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/16 19:53:55 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -38,16 +38,16 @@ int	main()
 	char	s[] = "abcdefghijklmnopqtstuvwxyz";
 	void	*p = 0;
 	void	*p2 = &p;
-//	unsigned int	n3 = 4294967295;
+	unsigned int	n3 = 4294967295;
 
 	printf("true xX:\t%x %X\n", n, n);
 	ft_printf("my xX:\t\t%x %X\n", n, n);
 
-	printf("true u:\t%u\n", n);
-	ft_printf("my u:\t%u\n", n);
+	printf("true u:\t|%030u|\n", n3);
+	ft_printf("my u:\t|%030u|\n", n3);
 
-	printf("true int max:\t%d\n", n2);
-	ft_printf("my int max:\t%d\n", n2);
+	printf("true int max:\t|%040d|\n", n2);
+	ft_printf("my int max:\t|%040d|\n", n2);
 
 	printf("true perc:\t%%\n");
 	ft_printf("my perc:\t%%\n");

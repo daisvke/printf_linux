@@ -6,45 +6,11 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 04:04:51 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/16 19:51:23 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
-void	ft_print_hex(size_t nb, char *base)
-{
-	if (nb >= 16)
-		ft_print_hex(nb / 16, base);
-	ft_putchar(base[nb % 16]);
-}
-
-void	ft_print_u(unsigned int nb)
-{
-	if (nb >= 10)
-		ft_print_u(nb / 10);
-	ft_putchar(nb % 10 + '0');
-}
-
-int	ft_baselen(long l, int base)
-{
-	int len;
-
-	len = 0;
-	while (l >= base)
-	{
-		l /= base;
-		++len;
-	}
-	++len;
-	return (len);
-}
-
-void	ft_putnstr(char *s, int n)
-{
-	while (*s && n--)
-		ft_putchar(*s++);
-}
 
 void	ft_redirect_sp(va_list ap, t_flags arg)	
 {
@@ -55,9 +21,9 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 	else if (arg.sp == 'p')
 		ft_process_p(ap, arg);
 	else if (arg.sp == 'd' || arg.sp == 'i')
-		ft_process_di(ap);
+		ft_process_di(ap, arg);
 	else if (arg.sp == 'u')
-		ft_process_u(ap);
+		ft_process_u(ap, arg);
 	else if (arg.sp == 'x')
 		ft_process_x(ap); 
 	else if (arg.sp == 'X')

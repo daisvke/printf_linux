@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 04:07:37 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/16 19:51:23 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,7 @@ void	ft_process_s(va_list ap, t_flags arg)
 	else if (arg.dot && arg.width)
 		ft_putnstr(s, arg.width);
 	else
-	{
-		printf("=======%s========\n", s);
 		ft_putstr(s);
-	}
-//	if (!arg.width || !arg.dot || !arg.minus || arg.star)
-//		ft_putstr(s);
 }
 
 void	ft_process_p(va_list ap, t_flags arg)
@@ -103,18 +98,65 @@ void	ft_process_p(va_list ap, t_flags arg)
 	}
 }
 
-void	ft_process_di(va_list ap)
+void	ft_process_di(va_list ap, t_flags arg)
 {
-	int	n;
+	int		n;
+	long	l;
+	int		c;
+	int		len;
 
-	n = va_arg(ap, int);	
-	ft_putnbr(n);
+	l = 0;
+	n = va_arg(ap, int);
+	if (arg.zero && n < 0)
+		l = -n;
+	if (arg.width)
+	{
+		if (l)
+			ft_putchar('-');
+		if (arg.zero)
+			c = '0';
+		else
+			c = ' ';
+		len = arg.width - ft_intlen(n);
+		if (len > 0)
+		{
+			if (arg.minus)
+				ft_putnbr(n);
+			while (len--)
+				ft_putchar(c);
+		}
+	}
+	if (!arg.width || !arg.minus)
+	{
+		if (l)
+			ft_putstr("2147483648");
+		else
+			ft_putnbr(n);
+	}
 }
 
-void	ft_process_u(va_list ap)
+void	ft_process_u(va_list ap, t_flags arg)
 {
 	unsigned int	u;
+	int		c;
+	int		len;
 
 	u = va_arg(ap, unsigned int);
-	ft_print_u(u);
+	if (arg.width)
+	{
+		if (arg.zero)
+			c = '0';
+		else
+			c = ' ';
+		len = arg.width - ft_intlen(u);
+		if (len > 0)
+		{
+			if (arg.minus)
+				ft_print_u(u);
+			while (len--)
+				ft_putchar(c);
+		}
+	}
+	if (!arg.width || !arg.minus)
+		ft_print_u(u);
 }
