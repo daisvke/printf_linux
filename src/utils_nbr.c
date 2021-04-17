@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 04:15:57 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_print_u(unsigned int nb)
 
 int	ft_baselen(long l, int base)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (l >= base)

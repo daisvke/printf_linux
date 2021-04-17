@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:53:02 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // TO DEL
 # include <stdio.h>
 
-typedef struct	s_flags
+typedef struct s_flags
 {
 	bool	minus;
 	bool	zero;

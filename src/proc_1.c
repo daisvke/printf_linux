@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:53:02 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,8 @@ void	ft_process_di(va_list ap, t_flags arg)
 void	ft_process_u(va_list ap, t_flags arg)
 {
 	unsigned int	u;
-	int		c;
-	int		len;
+	int				c;
+	int				len;
 
 	if (arg.dot && arg.star && !arg.width)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_utils.c                                   :+:      :+:    :+:   */
+/*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 15:22:46 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 	else if (arg.sp == 'u')
 		ft_process_u(ap, arg);
 	else if (arg.sp == 'x')
-		ft_process_x(ap, arg); 
+		ft_process_x(ap, arg);
 	else if (arg.sp == 'X')
 		ft_process_x2(ap, arg);
 	else if (arg.sp == '%')
