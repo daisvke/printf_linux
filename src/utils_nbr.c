@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 19:49:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 04:15:57 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,28 @@ int	ft_baselen(long l, int base)
 	}
 	++len;
 	return (len);
+}
+
+char	*ft_ltoa(long n)
+{
+	char	*res;
+	int		len;
+	long	nb;
+
+	nb = n;
+	len = ft_intlen(nb);
+	res = malloc(sizeof(*res) * (len + 1));
+	if (!res)
+		return (0);
+	res[len] = 0;
+	if (nb < 0)
+		nb = -nb;
+	while (len--)
+	{
+		res[len] = nb % 10 + '0';
+		nb /= 10;
+	}
+	if (n < 0)
+		res[0] = '-';
+	return (res);
 }

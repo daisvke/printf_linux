@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 23:50:42 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:22:15 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_process_p(va_list ap, t_flags arg)
 			if (arg.minus)
 			{
 				ft_putstr("0x");
-				ft_print_hex(h, "0123456789abcdef");
+				ft_print_hex(h, HEX_LOWER);
 			}
 			while (len--)
 				ft_putchar(' ');
@@ -90,7 +90,7 @@ void	ft_process_p(va_list ap, t_flags arg)
 	if (!arg.width || !arg.minus)
 	{
 		ft_putstr("0x");
-		ft_print_hex(h, "0123456789abcdef");
+		ft_print_hex(h, HEX_LOWER);
 	}
 }
 
@@ -130,7 +130,15 @@ void	ft_process_di(va_list ap, t_flags arg)
 	if (!arg.width || !arg.minus)
 	{
 		if (l)
-			ft_putstr("2147483648");
+		{
+			if (n == INT_MIN)
+			{
+				ft_putstr(INT_MAX_PLUS_1);
+				free(INT_MAX_PLUS_1);
+			}
+			else
+				ft_putnbr(l);
+		}
 		else
 			ft_putnbr(n);
 	}
