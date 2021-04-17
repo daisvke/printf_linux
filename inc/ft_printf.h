@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:46:47 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:53:02 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 # include "../../libft/libft.h"
 
 # define SP_LIST "cspdiuxX%"
-# define INT_MAX_PLUS_1 (INT_MAX + 1L)
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define ERROR -1
 # define EMPTY_FMT 0
 
 // TO DEL
-#include <stdio.h>
+# include <stdio.h>
 
 typedef struct	s_flags
 {

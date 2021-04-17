@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:42:46 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:53:02 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	ft_process_di(va_list ap, t_flags arg)
 		{
 			if (n == INT_MIN)
 			{
-				s = ft_ltoa(INT_MAX_PLUS_1);
+				s = ft_ltoa(INT_MAX + 1L);
 				ft_putstr(s);
 				free(s);
 			}
