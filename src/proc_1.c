@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 15:22:15 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:42:46 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_process_di(va_list ap, t_flags arg)
 	long	l;
 	int		c;
 	int		len;
+	char	*s;
 
 	if (arg.dot && arg.star && !arg.width)
 	{
@@ -133,8 +134,9 @@ void	ft_process_di(va_list ap, t_flags arg)
 		{
 			if (n == INT_MIN)
 			{
-				ft_putstr(INT_MAX_PLUS_1);
-				free(INT_MAX_PLUS_1);
+				s = ft_ltoa(INT_MAX_PLUS_1);
+				ft_putstr(s);
+				free(s);
 			}
 			else
 				ft_putnbr(l);
