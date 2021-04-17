@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 19:51:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/17 03:06:52 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 	else if (arg.sp == 'u')
 		ft_process_u(ap, arg);
 	else if (arg.sp == 'x')
-		ft_process_x(ap); 
+		ft_process_x(ap, arg); 
 	else if (arg.sp == 'X')
-		ft_process_x2(ap);
+		ft_process_x2(ap, arg);
 	else if (arg.sp == '%')
 		ft_process_per();
 }
@@ -82,9 +82,7 @@ t_flags	ft_set_flags(char *s)
 		s++;
 	}
 	arg.width = n;
-	if (*s == 'c' || *s == 's' || *s == 'p' || \
-		*s == 'd' || *s == 'i' || *s == 'u' || \
-		*s == 'x' || *s == 'X' || *s == '%')
+	if (ft_strchr(SP_LIST, *s))
 	{
 		arg.sp = *s;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/16 19:51:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/16 23:50:42 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,10 @@ void	ft_process_s(va_list ap, t_flags arg)
 {
 	char	*s;
 	int		len;
-	int		n;
 
-	n = 0;
 	if (arg.dot && arg.star && !arg.width)
-		n = va_arg(ap, int);
+		arg.width = va_arg(ap, int);
 	s = va_arg(ap, char *);
-	if (arg.dot && arg.star && !arg.width)
-		ft_putnstr(s, n);
 	if (arg.dot && !arg.width)
 		return ;
 	if (!arg.dot && arg.width)
@@ -105,8 +101,13 @@ void	ft_process_di(va_list ap, t_flags arg)
 	int		c;
 	int		len;
 
-	l = 0;
+	if (arg.dot && arg.star && !arg.width)
+	{
+		arg.width = va_arg(ap, int);
+		arg.zero = true;
+	}
 	n = va_arg(ap, int);
+	l = 0;
 	if (arg.zero && n < 0)
 		l = -n;
 	if (arg.width)
@@ -141,6 +142,11 @@ void	ft_process_u(va_list ap, t_flags arg)
 	int		c;
 	int		len;
 
+	if (arg.dot && arg.star && !arg.width)
+	{
+		arg.width = va_arg(ap, int);
+		arg.zero = true;
+	}
 	u = va_arg(ap, unsigned int);
 	if (arg.width)
 	{
