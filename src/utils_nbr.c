@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/18 02:12:05 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	ft_print_u(unsigned int nb)
 	if (nb >= 10)
 		ft_print_u(nb / 10);
 	ft_putchar(nb % 10 + '0');
+}
+
+void	ft_print_p(size_t nb)
+{
+	ft_putstr("0x");
+	ft_print_hex(nb, HEX_LOWER);
 }
 
 int	ft_baselen(long l, int base)

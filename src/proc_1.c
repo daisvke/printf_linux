@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/18 02:47:25 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@ void	ft_process_c(va_list ap, t_flags arg)
 {
 	int	c;
 	int	len;
+	int	n;
 
+	len = 0;
 	c = va_arg(ap, int);
 	if (arg.width)
 	{
 		len = arg.width - 1;
 		if (len > 0)
 		{
+			n = len;
 			if (arg.minus)
 				ft_putchar(c);
-			while (len--)
+			while (n--)
 				ft_putchar(' ');
 		}
 	}
-	if (!arg.width || !arg.minus)
+	if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
+		(arg.width && len <= 0))
 		ft_putchar(c);
 }
 
@@ -37,7 +41,9 @@ void	ft_process_s(va_list ap, t_flags arg)
 {
 	char	*s;
 	int		len;
+	int		n;
 
+	len = 0;
 	if (arg.dot && arg.star && !arg.width)
 		arg.width = va_arg(ap, int);
 	s = va_arg(ap, char *);
@@ -48,17 +54,17 @@ void	ft_process_s(va_list ap, t_flags arg)
 		len = arg.width - ft_strlen(s);
 		if (len > 0)
 		{
+			n = len;
 			if (arg.minus)
 				ft_putstr(s);
-			while (len--)
+			while (n--)
 				ft_putchar(' ');
 		}
-		if (!arg.minus)
-			ft_putstr(s);
 	}
-	else if (arg.dot && arg.width)
+	if (arg.dot && arg.width)
 		ft_putnstr(s, arg.width);
-	else
+	else if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
+			(arg.width && len <= 0))
 		ft_putstr(s);
 }
 
@@ -79,19 +85,13 @@ void	ft_process_p(va_list ap, t_flags arg)
 		if (len > 0)
 		{
 			if (arg.minus)
-			{
-				ft_putstr("0x");
-				ft_print_hex(h, HEX_LOWER);
-			}
+				ft_print_p(h);
 			while (len--)
 				ft_putchar(' ');
 		}
 	}
 	if (!arg.width || !arg.minus)
-	{
-		ft_putstr("0x");
-		ft_print_hex(h, HEX_LOWER);
-	}
+		ft_print_p(h);
 }
 
 void	ft_process_di(va_list ap, t_flags arg)
@@ -136,7 +136,8 @@ void	ft_process_di(va_list ap, t_flags arg)
 			{
 				s = ft_ltoa(INT_MAX + 1L);
 				ft_putstr(s);
-				free(s);
+				if (s)
+					free(s);
 			}
 			else
 				ft_putnbr(l);

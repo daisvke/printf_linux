@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/17 21:58:40 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/18 02:12:05 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_baselen(long l, int base);
 char	*ft_ltoa(long n);
 void	ft_print_hex(size_t nb, char *base);
 void	ft_print_u(unsigned int nb);
+void	ft_print_p(size_t nb);
 int		ft_printf(const char *fmt, ...);
 void	ft_process_c(va_list ap, t_flags arg);
 void	ft_process_s(va_list ap, t_flags arg);
