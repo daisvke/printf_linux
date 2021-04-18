@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/18 00:46:19 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/18 03:08:09 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	ft_read_fmt(va_list ap, char *s)
 				printf("w:\t%d\n", arg.width);
 				printf("sp:\t%c\n", arg.sp);
 				printf("len:\t%d\n", arg.len);
-				printf("=======================\n\n");*/
+				printf("=======================\n\n");t */
 				ft_redirect_sp(ap, arg);
 				s += arg.len;
 			}

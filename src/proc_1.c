@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/18 02:47:25 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/18 03:32:15 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,20 @@ void	ft_process_s(va_list ap, t_flags arg)
 
 void	ft_process_p(va_list ap, t_flags arg)
 {
+	va_list	cp;
 	size_t	h;
 	int		len;
+	int		n;
 
-	h = va_arg(ap, size_t);
+	len = 0;
+	n = -1;
+	while (n < 0 && ap)
+	{
+		va_copy(cp, ap);
+		n = va_arg(cp, int);
+		h = va_arg(ap, size_t);
+	}
+	va_end(cp);
 	if (!h)
 	{
 		ft_putstr("(nil)");
@@ -84,13 +94,15 @@ void	ft_process_p(va_list ap, t_flags arg)
 		len = arg.width - ft_baselen(h, 16) - 2;
 		if (len > 0)
 		{
+			n = len;
 			if (arg.minus)
 				ft_print_p(h);
-			while (len--)
+			while (n--)
 				ft_putchar(' ');
 		}
 	}
-	if (!arg.width || !arg.minus)
+	if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
+		(arg.width && len <= 0))
 		ft_print_p(h);
 }
 
