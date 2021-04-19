@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/18 03:32:15 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:23:32 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_process_c(va_list ap, t_flags arg)
 
 	len = 0;
 	c = va_arg(ap, int);
-	if (arg.width)
+	if (arg.min)
 	{
-		len = arg.width - 1;
+		len = arg.min - 1;
 		if (len > 0)
 		{
 			n = len;
@@ -32,8 +32,8 @@ void	ft_process_c(va_list ap, t_flags arg)
 				ft_putchar(' ');
 		}
 	}
-	if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
-		(arg.width && len <= 0))
+	if (!arg.min || (arg.min && len > 0 && !arg.minus) || \
+		(arg.min && len <= 0))
 		ft_putchar(c);
 }
 
@@ -44,8 +44,6 @@ void	ft_process_s(va_list ap, t_flags arg)
 	int		n;
 
 	len = 0;
-	if (arg.dot && arg.star && !arg.width)
-		arg.width = va_arg(ap, int);
 	s = va_arg(ap, char *);
 	if (arg.dot && !arg.width)
 		return ;
