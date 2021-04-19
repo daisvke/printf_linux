@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/18 02:12:05 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/19 16:06:38 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../../libft/libft.h"
 
 # define SP_LIST "cspdiuxX%"
+# define FLAG_LIST "-0.*"
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define ERROR -1
@@ -33,9 +34,11 @@ typedef struct s_flags
 	bool	zero;
 	bool	dot;
 	bool	star;
-	int		width;	
+	int		min;	
+	int		max;
 	char	sp;
 	int		len;
+	char	*s;
 }				t_flags;
 
 int		ft_baselen(long l, int base);

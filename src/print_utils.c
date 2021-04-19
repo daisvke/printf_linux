@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/19 14:23:32 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/19 16:13:35 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,45 +32,36 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 		ft_process_per();
 }
 
-t_flags	ft_set_flags(char *s)
+void	ft_read_minus(t_flags *arg)
 {
-	int		n;
-	int		i;
-	t_flags	arg;
+	while (*(arg->s) == '-')
+	{
+		arg->minus = true;
+		arg->len++;
+		arg->s++;
+	}
+}
 
-	ft_bzero(&arg, sizeof(arg));
-	i = 1;
-	s++;
-	while (*s == '-')
+bool	ft_read_dot(t_flags *arg)
+{
+	if (*(arg->s) == '.' && *(arg->s + 1) != '.')
 	{
-		arg.minus = true;
-		i++;
-		s++;
+		arg->dot = true;
+		arg->len++;
+		arg->s++;
 	}
-	while (*s == '0')
-	{
-		if (!arg.minus)
-			arg.zero = true;
-		i++;
-		s++;
-	}
-	if (*s == '.' && *(s + 1) != '.')
-	{
-		arg.dot = true;
-		i++;
-		s++;
-	}
-	else if (*s == '.' && *(s + 1) == '.')
+	else if (*(arg->s) == '.' && *(arg->s + 1) == '.')
 	{
 		ft_bzero(&arg, sizeof(arg));
-		return (arg);
+		return (0);
 	}
-	if (*s == '*')
-	{
-		arg.star = true;
-		i++;
-		s++;
-	}
+	return (1);
+}
+
+void	ft_read_nbr(t_flags *arg)
+{
+	if (*(arg->s) == '0' && !ft_isdigit(*(arg->s - 1)))
+		arg.zero = true;
 	n = 0;
 	while (ft_isdigit(*s))
 	{
@@ -78,10 +69,31 @@ t_flags	ft_set_flags(char *s)
 			return (arg);
 		n *= 10;
 		n += *s - '0';
+		arg->len++;
+		arg->s++;
+	}
+	arg.width = n;
+}
+
+t_flags	ft_set_flags(char *s)
+{
+	int		n;
+	int		i;
+	t_flags	arg;
+
+	ft_bzero(arg, sizeof(arg));
+	i = 1;
+	arg.s = s++;
+	ft_read_minus(&arg);
+	if (!ft_read_dot(&arg))
+		return (arg);
+	if (*s == '*')
+	{
+		arg.star = true;
 		i++;
 		s++;
 	}
-	arg.width = n;
+	ft_read_nbr(arg);
 	if (ft_strchr(SP_LIST, *s))
 	{
 		arg.sp = *s;
