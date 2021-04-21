@@ -6,153 +6,133 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/19 14:23:32 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/21 03:19:05 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
+void	ft_print_space_zero(t_flags arg, long nb)
+{
+	int	minlen;
+	int	maxlen;
+
+	maxlen = arg.max - ft_intlen(nb); 
+	if (maxlen > 0)
+		minlen = arg.min - maxlen;
+	else
+		minlen = arg.min - ft_intlen(nb);
+//	printf("max=====%d====\n", maxlen);
+//	printf("min=====%d====\n", minlen);
+	if (!arg.zero && minlen > 0)
+		while (minlen--)
+			ft_putchar(' ');
+	if (maxlen > 0)
+		while (maxlen--)
+			ft_putchar('0');
+	else if (minlen > 0 && !arg.max && arg.min && arg.zero)
+		while (minlen--)
+			ft_putchar('0');
+}
+
+void	ft_print_space(t_flags arg, size_t nb)
+{
+	int	minlen;
+	int	maxlen;
+
+	if (arg.max > (int)nb)
+		maxlen = nb;
+	if ((int)nb > arg.max)
+		maxlen = arg.max;
+	if (arg.max >= 0 && !arg.max)
+		maxlen = nb - arg.max;
+	minlen = arg.min - maxlen;
+//	printf("max=====%d====\n", maxlen); 1
+//	printf("min=====%d====\n", minlen); 6
+//	printf("max=====%d====\n", arg.max);
+//	printf("min=====%d====\n", arg.min); 7
+	if (minlen > 0)
+		while (minlen--)
+			ft_putchar(' ');
+}
+
 void	ft_process_c(va_list ap, t_flags arg)
 {
 	int	c;
-	int	len;
-	int	n;
 
-	len = 0;
 	c = va_arg(ap, int);
-	if (arg.min)
-	{
-		len = arg.min - 1;
-		if (len > 0)
-		{
-			n = len;
-			if (arg.minus)
-				ft_putchar(c);
-			while (n--)
-				ft_putchar(' ');
-		}
-	}
-	if (!arg.min || (arg.min && len > 0 && !arg.minus) || \
-		(arg.min && len <= 0))
+	if (arg.minus)
+		ft_putchar(c);
+	ft_print_space(arg, 1);
+	if (!arg.min || (arg.min && !arg.minus))
 		ft_putchar(c);
 }
 
 void	ft_process_s(va_list ap, t_flags arg)
 {
 	char	*s;
-	int		len;
-	int		n;
 
-	len = 0;
 	s = va_arg(ap, char *);
-	if (arg.dot && !arg.width)
-		return ;
-	if (!arg.dot && arg.width)
-	{
-		len = arg.width - ft_strlen(s);
-		if (len > 0)
-		{
-			n = len;
-			if (arg.minus)
-				ft_putstr(s);
-			while (n--)
-				ft_putchar(' ');
-		}
-	}
-	if (arg.dot && arg.width)
-		ft_putnstr(s, arg.width);
-	else if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
-			(arg.width && len <= 0))
+	if (!s)
+		s = ft_strdup("(null)"); 
+	if (arg.minus && arg.min)
+				ft_putnstr(s, arg.max);
+	if (arg.minus && !arg.dot && !arg.max)
 		ft_putstr(s);
+	if (arg.min)
+		ft_print_space(arg, ft_strlen(s));
+	if (!arg.minus && arg.dot && arg.min)
+		ft_putnstr(s, arg.max);
+	if (!arg.minus && !arg.dot && !arg.max)
+		ft_putstr(s);
+	if (!arg.min && arg.dot && arg.max)
+		ft_putnstr(s, arg.max);
 }
 
-void	ft_process_p(va_list ap, t_flags arg)
+void	ft_print_di_l(t_flags arg, int n, long l)
 {
-	va_list	cp;
-	size_t	h;
-	int		len;
-	int		n;
+	char	*s;
 
-	len = 0;
-	n = -1;
-	while (n < 0 && ap)
+	if (!arg.min || !arg.minus)
 	{
-		va_copy(cp, ap);
-		n = va_arg(cp, int);
-		h = va_arg(ap, size_t);
-	}
-	va_end(cp);
-	if (!h)
-	{
-		ft_putstr("(nil)");
-		return ;
-	}
-	if (arg.width)
-	{
-		len = arg.width - ft_baselen(h, 16) - 2;
-		if (len > 0)
+		if (n == INT_MIN)
 		{
-			n = len;
-			if (arg.minus)
-				ft_print_p(h);
-			while (n--)
-				ft_putchar(' ');
+			s = ft_ltoa(INT_MAX + 1L);
+			ft_putstr(s);
+			if (s)
+				free(s);
 		}
+		else
+			ft_putnbr(l);
 	}
-	if (!arg.width || (arg.width && len > 0 && !arg.minus) || \
-		(arg.width && len <= 0))
-		ft_print_p(h);
 }
 
 void	ft_process_di(va_list ap, t_flags arg)
 {
 	int		n;
 	long	l;
-	int		c;
-	int		len;
-	char	*s;
 
-	if (arg.dot && arg.star && !arg.width)
-	{
-		arg.width = va_arg(ap, int);
-		arg.zero = true;
-	}
 	n = va_arg(ap, int);
 	l = 0;
 	if (arg.zero && n < 0)
 		l = -n;
-	if (arg.width)
+	if (l)
 	{
-		if (l)
-			ft_putchar('-');
-		if (arg.zero)
-			c = '0';
-		else
-			c = ' ';
-		len = arg.width - ft_intlen(n);
-		if (len > 0)
-		{
-			if (arg.minus)
-				ft_putnbr(n);
-			while (len--)
-				ft_putchar(c);
-		}
+		ft_putchar('-');
+		if (arg.min)
+			arg.min--;
+		if (arg.minus)
+			ft_print_di_l(arg, n, l);
+		ft_print_space_zero(arg, l);
+		if (!arg.minus)
+			ft_print_di_l(arg, n, l);
 	}
-	if (!arg.width || !arg.minus)
-	{
-		if (l)
-		{
-			if (n == INT_MIN)
-			{
-				s = ft_ltoa(INT_MAX + 1L);
-				ft_putstr(s);
-				if (s)
-					free(s);
-			}
-			else
-				ft_putnbr(l);
-		}
-		else
+	else
+	{	
+		if (arg.minus)
+			ft_putnbr(n);
+		ft_print_space_zero(arg, n);
+		if (!arg.minus)
 			ft_putnbr(n);
 	}
 }
@@ -163,19 +143,15 @@ void	ft_process_u(va_list ap, t_flags arg)
 	int				c;
 	int				len;
 
-	if (arg.dot && arg.star && !arg.width)
-	{
-		arg.width = va_arg(ap, int);
-		arg.zero = true;
-	}
 	u = va_arg(ap, unsigned int);
-	if (arg.width)
+	ft_print_space_zero(arg, u);
+	if (arg.min)
 	{
 		if (arg.zero)
 			c = '0';
 		else
 			c = ' ';
-		len = arg.width - ft_intlen(u);
+		len = arg.min - ft_intlen(u);
 		if (len > 0)
 		{
 			if (arg.minus)
@@ -184,6 +160,6 @@ void	ft_process_u(va_list ap, t_flags arg)
 				ft_putchar(c);
 		}
 	}
-	if (!arg.width || !arg.minus)
+	if (!arg.min || !arg.minus)
 		ft_print_u(u);
 }

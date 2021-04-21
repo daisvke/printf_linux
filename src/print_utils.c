@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/19 16:13:35 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/21 01:28:16 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,80 +32,47 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 		ft_process_per();
 }
 
-void	ft_read_minus(t_flags *arg)
-{
-	while (*(arg->s) == '-')
-	{
-		arg->minus = true;
-		arg->len++;
-		arg->s++;
-	}
-}
-
-bool	ft_read_dot(t_flags *arg)
-{
-	if (*(arg->s) == '.' && *(arg->s + 1) != '.')
-	{
-		arg->dot = true;
-		arg->len++;
-		arg->s++;
-	}
-	else if (*(arg->s) == '.' && *(arg->s + 1) == '.')
-	{
-		ft_bzero(&arg, sizeof(arg));
-		return (0);
-	}
-	return (1);
-}
-
-void	ft_read_nbr(t_flags *arg)
-{
-	if (*(arg->s) == '0' && !ft_isdigit(*(arg->s - 1)))
-		arg.zero = true;
-	n = 0;
-	while (ft_isdigit(*s))
-	{
-		if (arg.star)
-			return (arg);
-		n *= 10;
-		n += *s - '0';
-		arg->len++;
-		arg->s++;
-	}
-	arg.width = n;
-}
-
 t_flags	ft_set_flags(char *s)
 {
-	int		n;
-	int		i;
 	t_flags	arg;
 
-	ft_bzero(arg, sizeof(arg));
-	i = 1;
-	arg.s = s++;
+	ft_bzero(&arg, sizeof(arg));
+	arg.len = 1;
+	s++;
+	arg.s = s;
 	ft_read_minus(&arg);
-	if (!ft_read_dot(&arg))
-		return (arg);
-	if (*s == '*')
-	{
-		arg.star = true;
-		i++;
-		s++;
-	}
-	ft_read_nbr(arg);
-	if (ft_strchr(SP_LIST, *s))
-	{
-		arg.sp = *s;
-		i++;
-	}
-	else
+	ft_read_zero(&arg);
+	if (!ft_read_nbr(&arg) || !ft_read_dot(&arg) || \
+		!ft_read_wc(&arg) || !ft_read_nbr(&arg) || \
+		!ft_read_sp(&arg))
 	{
 		ft_bzero(&arg, sizeof(arg));
 		return (arg);
 	}
-	arg.len = i;
 	return (arg);
+}
+
+bool	ft_check_flags_s(t_flags *arg)
+{
+	if (arg->dot && !arg->max)
+		return (false);
+	return (true);
+}
+
+bool	ft_check_flags(va_list ap, t_flags *arg)
+{
+	if (arg->sp == 's')
+		if (!ft_check_flags_s(arg))
+			return (false);
+//	if (arg->sp == 'u' || arg->sp == 'd' || arg->sp == 'i')
+//		if (arg->dot && arg.wc)
+	if (arg->dot && arg->wc)
+		arg->max = va_arg(ap, int);
+	if (!arg->dot && arg->wc)
+		arg->min = va_arg(ap, int);
+	if (arg->dot && arg->wc && !arg->min && !arg->max)
+		arg->zero = true;
+	return (true);
 }
 
 void	ft_read_fmt(va_list ap, char *s)
@@ -119,16 +86,20 @@ void	ft_read_fmt(va_list ap, char *s)
 		{
 			arg = ft_set_flags(s);
 			if (arg.sp)
-			{/*
+			{
+				if (ft_check_flags(ap, &arg))
+					ft_redirect_sp(ap, arg);
+		/*	
 				printf("\n\n=======================\n");
 				printf("minus:\t%d\n", arg.minus);
 				printf("zero:\t%d\n", arg.zero);
 				printf("dot:\t%d\n", arg.dot);
-				printf("w:\t%d\n", arg.width);
+				printf("min:\t%d\n", arg.min);
+				printf("max:\t%d\n", arg.max);
+				printf("wc:\t%d\n", arg.wc);
 				printf("sp:\t%c\n", arg.sp);
 				printf("len:\t%d\n", arg.len);
 				printf("=======================\n\n");*/
-				ft_redirect_sp(ap, arg);
 				s += arg.len;
 			}
 			else

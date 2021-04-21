@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/19 16:06:38 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:12:21 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_flags
 	bool	minus;
 	bool	zero;
 	bool	dot;
-	bool	star;
+	bool	wc;
 	int		min;	
 	int		max;
 	char	sp;
@@ -56,7 +56,13 @@ void	ft_process_u(va_list ap, t_flags arg);
 void	ft_process_x(va_list ap, t_flags arg);
 void	ft_process_x2(va_list ap, t_flags arg);
 void	ft_putnstr(char *s, int n);
+bool	ft_read_dot(t_flags *arg);
 void	ft_read_fmt(va_list ap, char *s);
+void	ft_read_minus(t_flags *arg);
+bool	ft_read_nbr(t_flags *arg);
+bool	ft_read_sp(t_flags *arg);
+bool	ft_read_wc(t_flags *arg);
+void	ft_read_zero(t_flags *arg);
 void	ft_redirect_sp(va_list ap, t_flags arg);
 t_flags	ft_set_flags(char *s);
 
