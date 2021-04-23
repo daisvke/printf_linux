@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/20 23:12:21 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/22 00:56:56 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_print_u(unsigned int nb);
 void	ft_print_p(size_t nb);
 int		ft_printf(const char *fmt, ...);
 void	ft_process_c(va_list ap, t_flags arg);
+void	ft_print_space_zero(t_flags arg, int len, long nb);
 void	ft_process_s(va_list ap, t_flags arg);
 void	ft_process_di(va_list ap, t_flags arg);
 void	ft_process_p(va_list ap, t_flags arg);

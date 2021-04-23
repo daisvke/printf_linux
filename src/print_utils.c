@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/21 01:28:16 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/22 00:05:19 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,8 @@ t_flags	ft_set_flags(char *s)
 	return (arg);
 }
 
-bool	ft_check_flags_s(t_flags *arg)
-{
-	if (arg->dot && !arg->max)
-		return (false);
-	return (true);
-}
-
 bool	ft_check_flags(va_list ap, t_flags *arg)
 {
-	if (arg->sp == 's')
-		if (!ft_check_flags_s(arg))
-			return (false);
-//	if (arg->sp == 'u' || arg->sp == 'd' || arg->sp == 'i')
-//		if (arg->dot && arg.wc)
 	if (arg->dot && arg->wc)
 		arg->max = va_arg(ap, int);
 	if (!arg->dot && arg->wc)
