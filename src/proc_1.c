@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/27 05:05:55 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/27 05:23:01 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,53 @@ void	ft_print_di_l(int n, long l)
 		ft_putnbr(l);
 }
 
+void	ft_process_pos_nbr(t_flags arg, long n)
+{
+	int	zero;
+
+	zero = ft_count_zero(arg, ft_intlen(n));
+	if (arg.minus)
+	{
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_putnbr(n);
+		ft_print_space(arg, zero + ft_intlen(n));
+	}
+	else
+	{
+		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_putnbr(n);
+	}
+}
+
+void	ft_process_neg_nbr(t_flags arg, int n, long l)
+{
+	int	zero;
+
+	if (arg.min)
+		arg.min--;
+	zero = ft_count_zero(arg, ft_intlen(l));
+	if (arg.minus)
+	{
+		ft_putchar('-');
+		ft_print_zero(zero);
+		ft_print_di_l(n, l);
+		ft_print_space(arg, zero + ft_intlen(l));
+	}
+	else
+	{
+		ft_print_space(arg, zero + ft_intlen(l));
+		ft_putchar('-');
+		ft_print_zero(zero);
+		ft_print_di_l(n, l);
+	}
+}
+
 void	ft_process_di(va_list ap, t_flags arg)
 {
 	int		n;
-	int		zero;
 	long	l;
 
 	l = 0;
@@ -156,71 +199,24 @@ void	ft_process_di(va_list ap, t_flags arg)
 	if (n < 0)
 		l = -n;
 	if (l)
-	{
-		if (arg.min)
-			arg.min--;
-		zero = ft_count_zero(arg, ft_intlen(l));
-		if (arg.minus)
-		{
-			ft_putchar('-');
-			ft_print_zero(zero);
-			ft_print_di_l(n, l);
-			ft_print_space(arg, zero + ft_intlen(l));
-		}
-		else
-		{
-			ft_print_space(arg, zero + ft_intlen(l));
-			ft_putchar('-');
-			ft_print_zero(zero);
-			ft_print_di_l(n, l);
-		}
-	}
+		ft_process_neg_nbr(arg, n, l);
 	else
-	{	
-		zero = ft_count_zero(arg, ft_intlen(n));
-		if (arg.minus)
-		{
-			ft_print_zero(zero);
-			if (!(arg.dot && arg.max == 0))
-				ft_putnbr(n);
-			ft_print_space(arg, zero + ft_intlen(n));
-		}
-		else
-		{
-			ft_print_space(arg, zero + ft_intlen(n));
-			ft_print_zero(zero);
-			if (!(arg.dot && arg.max == 0))
-				ft_putnbr(n);
-		}
-	}
-//	if (arg.minus && minlen > 0)
-//		ft_putnchar(' ', minlen);
+		ft_process_pos_nbr(arg, n);
 }
 
 void	ft_process_u(va_list ap, t_flags arg)
 {
 	unsigned int	u;
-	int				c;
-	int				len;
+	char			*s;
 
 	u = va_arg(ap, unsigned int);
-	ft_print_space(arg, ft_intlen(u));
-	ft_print_zero(ft_count_zero(arg, ft_intlen(u)));
-	if (arg.min)
+	if (u == UINT_MAX)
 	{
-		if (arg.zero)
-			c = '0';
-		else
-			c = ' ';
-		len = arg.min - ft_intlen(u);
-		if (len > 0)
-		{
-			if (arg.minus)
-				ft_print_u(u);
-			while (len--)
-				ft_putchar(c);
-		}
+		s = ft_ltoa(UINT_MAX);
+		ft_putstr(s);
+		if (s)
+			free(s);
 	}
-	if (!arg.min || !arg.minus)
-		ft_print_u(u);
+	else
+		ft_process_pos_nbr(arg, u);
 }
