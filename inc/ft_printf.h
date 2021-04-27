@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/26 21:06:09 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:15:57 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,22 @@ typedef struct s_flags
 }				t_flags;
 
 int		ft_baselen(long l, int base);
+int		ft_count_zero(t_flags arg, int len);
 char	*ft_ltoa(long n);
 void	ft_print_di_l(int n, long l);
 void	ft_print_hex(size_t nb, char *base);
 void	ft_print_u(unsigned int nb);
 void	ft_print_p(size_t nb);
+void	ft_print_space(t_flags arg, int len);
+void	ft_print_zero(int len);
 int		ft_printf(const char *fmt, ...);
 void	ft_process_c(va_list ap, t_flags arg);
-int		ft_print_space_zero(t_flags arg, int len, long nb);
 void	ft_process_s(va_list ap, t_flags arg);
 void	ft_process_di(va_list ap, t_flags arg);
+void	ft_process_neg_nbr(t_flags arg, int n, long l);
 void	ft_process_p(va_list ap, t_flags arg);
 void	ft_process_per(void);
+void	ft_process_pos_nbr(t_flags arg, long n);
 void	ft_process_u(va_list ap, t_flags arg);
 void	ft_process_x(va_list ap, t_flags arg);
 void	ft_process_x2(va_list ap, t_flags arg);

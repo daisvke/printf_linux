@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/21 01:17:12 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:19:20 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,53 +64,49 @@ void	ft_process_p(va_list ap, t_flags arg)
 void	ft_process_x(va_list ap, t_flags arg)
 {
 	size_t	h;
-	int		c;
-	int		len;
+	int		zero;
 
 	h = va_arg(ap, size_t);
-	if (arg.min)
+
+	zero = ft_count_zero(arg, ft_baselen(h, 16));
+	if (arg.minus)
 	{
-		if (arg.zero)
-			c = '0';
-		else
-			c = ' ';
-		len = arg.min - ft_baselen(h, 16);
-		if (len > 0)
-		{
-			if (arg.minus)
-				ft_print_hex(h, HEX_LOWER);
-			while (len--)
-				ft_putchar(c);
-		}
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_hex(h, HEX_LOWER);
+		ft_print_space(arg, zero + ft_baselen(h, 16));
 	}
-	if (!arg.min || !arg.minus)
-		ft_print_hex(h, HEX_LOWER);
+	else
+	{
+		ft_print_space(arg, zero + ft_baselen(h, 16));
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_hex(h, HEX_LOWER);
+	}
 }
 
 void	ft_process_x2(va_list ap, t_flags arg)
 {
 	size_t	h;
-	int		c;
-	int		len;
+	int		zero;
 
 	h = va_arg(ap, size_t);
-	if (arg.min)
+
+	zero = ft_count_zero(arg, ft_baselen(h, 16));
+	if (arg.minus)
 	{
-		if (arg.zero)
-			c = '0';
-		else
-			c = ' ';
-		len = arg.min - ft_baselen(h, 16);
-		if (len > 0)
-		{
-			if (arg.minus)
-				ft_print_hex(h, HEX_UPPER);
-			while (len--)
-				ft_putchar(c);
-		}
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_hex(h, HEX_UPPER);
+		ft_print_space(arg, zero + ft_baselen(h, 16));
 	}
-	if (!arg.min || !arg.minus)
-		ft_print_hex(h, HEX_UPPER);
+	else
+	{
+		ft_print_space(arg, zero + ft_baselen(h, 16));
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_hex(h, HEX_UPPER);
+	}
 }
 
 void	ft_process_per(void)
