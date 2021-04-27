@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/22 00:05:19 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/27 04:59:40 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_flags	ft_set_flags(char *s)
 	arg.len = 1;
 	s++;
 	arg.s = s;
+	ft_read_zero(&arg);
 	ft_read_minus(&arg);
 	ft_read_zero(&arg);
 	if (!ft_read_nbr(&arg) || !ft_read_dot(&arg) || \
@@ -60,6 +61,7 @@ bool	ft_check_flags(va_list ap, t_flags *arg)
 		arg->min = va_arg(ap, int);
 	if (arg->dot && arg->wc && !arg->min && !arg->max)
 		arg->zero = true;
+	// any false ???
 	return (true);
 }
 
@@ -77,7 +79,7 @@ void	ft_read_fmt(va_list ap, char *s)
 			{
 				if (ft_check_flags(ap, &arg))
 					ft_redirect_sp(ap, arg);
-		/*	
+	/*	
 				printf("\n\n=======================\n");
 				printf("minus:\t%d\n", arg.minus);
 				printf("zero:\t%d\n", arg.zero);

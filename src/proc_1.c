@@ -6,17 +6,31 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/27 00:50:14 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/27 05:05:55 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-int	ft_print_space_zero(t_flags arg, int len, long nb)
+void	ft_print_zero(int len)
 {
-	int	minlen;
-	int	maxlen;
+	if (len > 0)
+		ft_putnchar('0', len);
+}
 
+int	ft_count_zero(t_flags arg, int len)
+{
+	int	zero;
+
+	zero = 0;
+	if (arg.max > len || arg.min > len)
+	{
+		if (arg.zero && arg.min && !arg.max)
+			zero = arg.min - len ;
+		else if ((arg.zero && arg.max) || (arg.dot && arg.max))
+			zero = arg.max - len;
+	}
+	/*
 	if (arg.max != len)
 		maxlen = arg.max;
 	if ((!arg.max && arg.zero) || arg.max == len)
@@ -34,32 +48,47 @@ int	ft_print_space_zero(t_flags arg, int len, long nb)
 	if (minlen > 0 && !arg.minus && (!arg.zero || maxlen))
 		ft_putnchar(' ', minlen);
 	if (nb < 0 && !arg.minus)
-		ft_putchar('-');
+		ft_putchar('-');*/
 //	printf("max=====%d====\n", maxlen);
 //	printf("min=====%d====\n", minlen);
+/*
 	if (maxlen > 0)
 		ft_putnchar('0', maxlen);
 	else if (minlen > 0 && !arg.max && arg.min > len && arg.zero)
 		ft_putnchar('0', minlen);
-	return (minlen);
+	return (minlen);*/
+	if (zero < 0)
+		zero = 0;
+	return (zero);
 }
 
-void	ft_print_space(t_flags arg, size_t nb)
+void	ft_print_space(t_flags arg, int len)
 {
-	int	minlen;
-	int	maxlen;
+	int	space;
+//	printf("=====%d====%d====\n\n", arg.min, len);
 
-	if (arg.max > (int)nb)
-		maxlen = nb;
-	if ((int)nb > arg.max)
-		maxlen = arg.max;
-	if (!arg.max || arg.max == (int)nb)
-		maxlen = nb;
-	if (arg.dot && !arg.max && (arg.min < (int)nb || arg.min > (int)nb))
-		maxlen = 0;
-	minlen = arg.min - maxlen;
-	if (minlen > 0)
-		ft_putnchar(' ', minlen);
+	if (arg.sp == 's')
+	{
+		if (arg.max > len)
+			space =  arg.min - len;
+		else
+			space = arg.min - arg.max;
+	}
+	else 
+	{
+		if (arg.max > len)
+			space = arg.min - arg.max;
+		else
+			space = arg.min - len;
+	}
+	if (!arg.max)
+		space = arg.min - len;
+	if (arg.dot && !arg.max)
+		space = arg.min;
+	if (space > 0)
+		ft_putnchar(' ', space);
+
+	//return (space);
 }
 
 void	ft_process_c(va_list ap, t_flags arg)
@@ -119,11 +148,10 @@ void	ft_print_di_l(int n, long l)
 void	ft_process_di(va_list ap, t_flags arg)
 {
 	int		n;
-	int		minlen;
+	int		zero;
 	long	l;
 
 	l = 0;
-	minlen = 0;
 	n = va_arg(ap, int);
 	if (n < 0)
 		l = -n;
@@ -131,32 +159,42 @@ void	ft_process_di(va_list ap, t_flags arg)
 	{
 		if (arg.min)
 			arg.min--;
+		zero = ft_count_zero(arg, ft_intlen(l));
 		if (arg.minus)
 		{
-			minlen = ft_print_space_zero(arg, ft_intlen(l), n);
+			ft_putchar('-');
+			ft_print_zero(zero);
 			ft_print_di_l(n, l);
+			ft_print_space(arg, zero + ft_intlen(l));
 		}
 		else
 		{
-			ft_print_space_zero(arg, ft_intlen(l), n);
+			ft_print_space(arg, zero + ft_intlen(l));
+			ft_putchar('-');
+			ft_print_zero(zero);
 			ft_print_di_l(n, l);
 		}
 	}
 	else
 	{	
+		zero = ft_count_zero(arg, ft_intlen(n));
 		if (arg.minus)
 		{
-			minlen = ft_print_space_zero(arg, ft_intlen(n), n);
-			ft_putnbr(n);
+			ft_print_zero(zero);
+			if (!(arg.dot && arg.max == 0))
+				ft_putnbr(n);
+			ft_print_space(arg, zero + ft_intlen(n));
 		}
 		else
 		{
-			ft_print_space_zero(arg, ft_intlen(n), n);
-			ft_putnbr(n);
+			ft_print_space(arg, zero + ft_intlen(n));
+			ft_print_zero(zero);
+			if (!(arg.dot && arg.max == 0))
+				ft_putnbr(n);
 		}
 	}
-	if (arg.minus && minlen > 0)
-		ft_putnchar(' ', minlen);
+//	if (arg.minus && minlen > 0)
+//		ft_putnchar(' ', minlen);
 }
 
 void	ft_process_u(va_list ap, t_flags arg)
@@ -166,7 +204,8 @@ void	ft_process_u(va_list ap, t_flags arg)
 	int				len;
 
 	u = va_arg(ap, unsigned int);
-	ft_print_space_zero(arg, ft_intlen(u), u);
+	ft_print_space(arg, ft_intlen(u));
+	ft_print_zero(ft_count_zero(arg, ft_intlen(u)));
 	if (arg.min)
 	{
 		if (arg.zero)
