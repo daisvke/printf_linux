@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/29 00:02:20 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:44:06 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	ft_process_s(va_list ap, t_flags arg)
 	s = va_arg(ap, char *);
 	if (!s)
 	{
-		if ((arg.dot && arg.max >= 6) || (!arg.dot && !arg.max) || \
-			arg.max < 0)
+		if ((arg.dot && arg.max >= 6) || (!arg.dot && !arg.max) || arg.max < 0)
 			s = ft_strdup("(null)"); 
 		else if (arg.max < 6)
 			s = "";
 	}
+	if (arg.max < 0)
+		arg.max = ft_strlen(s);
 	if (arg.minus && arg.min)
 		ft_putnstr(s, arg.max);
 	if (arg.minus && !arg.dot && !arg.max)
