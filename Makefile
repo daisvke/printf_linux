@@ -10,6 +10,7 @@ SRC_FILES	=	ft_printf.c \
 				print_utils.c \
 				proc_1.c \
 				proc_2.c \
+				proc_utils.c \
 				read.c \
 				utils_nbr.c \
 				utils_str.c

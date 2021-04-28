@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/28 05:25:20 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:05:12 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ bool	ft_read_dot(t_flags *arg)
 		arg->dot = true;
 		arg->len++;
 		arg->s++;
-	}
-	else if (*(arg->s) == '.' && *(arg->s + 1) == '.')
-	{
-		ft_bzero(&arg, sizeof(arg));
-		return (false);
 	}
 	return (true);
 }
@@ -68,15 +63,19 @@ bool	ft_read_nbr(t_flags *arg)
 	return (true);
 }
 
-bool	ft_read_wc(t_flags *arg)
+bool	ft_read_wc(t_flags *arg, va_list ap)
 {
 	while (*(arg->s) == '*')
 	{
-		if (arg->wc)
+		if (*(arg->s - 1) == '*')
 			return (false);
 		arg->wc = true;
 		arg->len++;
 		arg->s++;
+		if (!arg->dot && arg->wc)
+			arg->min = va_arg(ap, int);
+		else if (arg->dot && arg->wc)
+			arg->max = va_arg(ap, int);
 	}
 	return (true);
 }

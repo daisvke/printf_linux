@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/28 05:22:43 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:04:13 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_redirect_sp(va_list ap, t_flags arg)
 		ft_process_per();
 }
 
-t_flags	ft_set_flags(char *s)
+t_flags	ft_set_flags(char *s, va_list ap)
 {
 	t_flags	arg;
 
@@ -43,26 +43,14 @@ t_flags	ft_set_flags(char *s)
 	ft_read_zero(&arg);
 	ft_read_minus(&arg);
 	ft_read_zero(&arg);
-	if (!ft_read_nbr(&arg) || !ft_read_dot(&arg) || \
-		!ft_read_wc(&arg) || !ft_read_nbr(&arg) || \
+	if (!ft_read_wc(&arg, ap) || !ft_read_nbr(&arg) || !ft_read_dot(&arg) || \
+		!ft_read_wc(&arg, ap) || !ft_read_nbr(&arg) || \
 		!ft_read_sp(&arg))
 	{
 		ft_bzero(&arg, sizeof(arg));
 		return (arg);
 	}
 	return (arg);
-}
-
-bool	ft_check_flags(va_list ap, t_flags *arg)
-{
-	if (arg->dot && arg->wc)
-		arg->max = va_arg(ap, int);
-	if (!arg->dot && arg->wc)
-		arg->min = va_arg(ap, int);
-	if (arg->dot && arg->wc && !arg->min && !arg->max)
-		arg->zero = true;
-	// any false ???
-	return (true);
 }
 
 void	ft_read_fmt(va_list ap, char *s)
@@ -74,11 +62,10 @@ void	ft_read_fmt(va_list ap, char *s)
 		ft_bzero(&arg, sizeof(arg));
 		if (*s == '%')
 		{
-			arg = ft_set_flags(s);
+			arg = ft_set_flags(s, ap);
 			if (arg.sp)
 			{
-				if (ft_check_flags(ap, &arg))
-					ft_redirect_sp(ap, arg);
+				ft_redirect_sp(ap, arg);
 	/*	
 				printf("\n\n=======================\n");
 				printf("minus:\t%d\n", arg.minus);

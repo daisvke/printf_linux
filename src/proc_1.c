@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/27 14:18:02 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:02:20 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,43 @@ void	ft_process_di(va_list ap, t_flags arg)
 		ft_process_pos_nbr(arg, n);
 }
 
+void	ft_print_u(void)
+{
+	char	*s;
+	s = ft_ltoa(UINT_MAX);
+	ft_putstr(s);
+	if (s)
+		free(s);
+}
+
+void	ft_process_pos_nbr_u(t_flags arg, long n)
+{
+	int	zero;
+
+	zero = ft_count_zero(arg, ft_intlen(n));
+	if (arg.minus)
+	{
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_u();
+		ft_print_space(arg, zero + ft_intlen(n));
+	}
+	else
+	{
+		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_u();
+	}
+}
+
 void	ft_process_u(va_list ap, t_flags arg)
 {
 	unsigned int	u;
-	char			*s;
 
 	u = va_arg(ap, unsigned int);
 	if (u == UINT_MAX)
-	{
-		s = ft_ltoa(UINT_MAX);
-		ft_putstr(s);
-		if (s)
-			free(s);
-	}
+		ft_process_pos_nbr_u(arg, u);
 	else
 		ft_process_pos_nbr(arg, u);
 }
