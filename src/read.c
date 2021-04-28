@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/20 23:12:52 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/28 05:25:20 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	ft_read_zero(t_flags *arg)
 {
 	while (*(arg->s) == '0')
 	{
-			if (!arg->minus)
-					arg->zero = true;
-			arg->len++;
-			arg->s++;
+		if (!arg->minus)
+				arg->zero = true;
+		arg->len++;
+		arg->s++;
 	}
 }
 
@@ -56,8 +56,6 @@ bool	ft_read_nbr(t_flags *arg)
 	n = 0;
 	while (ft_isdigit(*(arg->s)))
 	{
-		if (arg->wc)
-			return (-1);
 		n *= 10;
 		n += *(arg->s) - '0';
 		if (arg->dot)
@@ -75,9 +73,8 @@ bool	ft_read_wc(t_flags *arg)
 	while (*(arg->s) == '*')
 	{
 		if (arg->wc)
-			return (0);
+			return (false);
 		arg->wc = true;
-		if(arg->dot)
 		arg->len++;
 		arg->s++;
 	}
