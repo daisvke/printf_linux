@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/29 00:44:06 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 03:10:01 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,20 @@ void	ft_process_di(va_list ap, t_flags arg)
 		ft_process_pos_nbr(arg, n);
 }
 
-void	ft_print_u(void)
+void	ft_print_umax(void)
 {
 	char	*s;
 	s = ft_ltoa(UINT_MAX);
 	ft_putstr(s);
 	if (s)
 		free(s);
+}
+
+void    ft_print_u(unsigned int nb)
+{
+        if (nb >= 10)
+                ft_print_u(nb / 10);
+        ft_putchar(nb % 10 + '0');
 }
 
 void	ft_process_pos_nbr_u(t_flags arg, long n)
@@ -100,7 +107,7 @@ void	ft_process_pos_nbr_u(t_flags arg, long n)
 	{
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
-			ft_print_u();
+			ft_print_u(n);
 		ft_print_space(arg, zero + ft_intlen(n));
 	}
 	else
@@ -108,7 +115,28 @@ void	ft_process_pos_nbr_u(t_flags arg, long n)
 		ft_print_space(arg, zero + ft_intlen(n));
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
-			ft_print_u();
+			ft_print_u(n);
+	}
+}
+
+void	ft_process_pos_nbr_umax(t_flags arg)
+{
+	int	zero;
+
+	zero = ft_count_zero(arg, 10);
+	if (arg.minus)
+	{
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_umax();
+		ft_print_space(arg, zero + 10);
+	}
+	else
+	{
+		ft_print_space(arg, zero + 10);
+		ft_print_zero(zero);
+		if (!(arg.dot && arg.max == 0))
+			ft_print_umax();
 	}
 }
 
@@ -118,7 +146,7 @@ void	ft_process_u(va_list ap, t_flags arg)
 
 	u = va_arg(ap, unsigned int);
 	if (u == UINT_MAX)
-		ft_process_pos_nbr_u(arg, u);
+		ft_process_pos_nbr_umax(arg);
 	else
-		ft_process_pos_nbr(arg, u);
+		ft_process_pos_nbr_u(arg, u);
 }

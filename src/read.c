@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/29 00:42:59 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/29 02:42:05 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ bool	ft_read_wc(t_flags *arg, va_list ap)
 			if (arg->min < 0)
 			{
 				arg->minus = true;
+				arg->zero = false;
 				arg->min = -(arg->min);
 			}
 
