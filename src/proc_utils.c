@@ -67,17 +67,17 @@ void	ft_process_pos_nbr(t_flags arg, long n)
 {
 	int	zero;
 
-	zero = ft_count_zero(arg, ft_intlen(n));
+	zero = ft_count_zero(arg, ft_nbrlen(n));
 	if (arg.minus)
 	{
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
 			ft_putnbr(n);
-		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 	}
 	else
 	{
-		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
 			ft_putnbr(n);
@@ -90,17 +90,17 @@ void	ft_process_neg_nbr(t_flags arg, int n, long l)
 
 	if (arg.min)
 		arg.min--;
-	zero = ft_count_zero(arg, ft_intlen(l));
+	zero = ft_count_zero(arg, ft_nbrlen(l));
 	if (arg.minus)
 	{
 		ft_putchar('-');
 		ft_print_zero(zero);
 		ft_print_di_l(n, l);
-		ft_print_space(arg, zero + ft_intlen(l));
+		ft_print_space(arg, zero + ft_nbrlen(l));
 	}
 	else
 	{
-		ft_print_space(arg, zero + ft_intlen(l));
+		ft_print_space(arg, zero + ft_nbrlen(l));
 		ft_putchar('-');
 		ft_print_zero(zero);
 		ft_print_di_l(n, l);

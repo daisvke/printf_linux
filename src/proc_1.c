@@ -88,17 +88,17 @@ void	ft_process_pos_nbr_u(t_flags arg, long n)
 {
 	int	zero;
 
-	zero = ft_count_zero(arg, ft_intlen(n));
+	zero = ft_count_zero(arg, ft_nbrlen(n));
 	if (arg.minus)
 	{
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
 			ft_print_u(n);
-		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 	}
 	else
 	{
-		ft_print_space(arg, zero + ft_intlen(n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
 			ft_print_u(n);
