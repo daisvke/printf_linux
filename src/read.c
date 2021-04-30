@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/29 02:42:05 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 03:13:10 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,14 @@ bool	ft_read_sp(t_flags *arg)
 		arg->s++;
 	}
 	return (true);
+}
+
+void	ft_read_whitespace(t_flags *arg)
+{
+	while (*(arg->s) == ' ')
+	{
+		ft_putchar(' ');
+		arg->len++;
+		arg->s++;
+	}
 }

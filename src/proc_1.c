@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 01:27:49 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 02:30:15 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_print_di_l(int n, long l)
 {
 	if (n == INT_MIN)
 	{
-		ft_ltoa(INT_MAX + 1L);
+		ft_putnbr(INT_MAX + 1L);
 	}
 	else
 		ft_putnbr(l);
@@ -75,11 +75,6 @@ void	ft_process_di(va_list ap, t_flags arg)
 		ft_process_neg_nbr(arg, n, l);
 	else
 		ft_process_pos_nbr(arg, n);
-}
-
-void	ft_print_umax(void)
-{
-	ft_ltoa(UINT_MAX);
 }
 
 void    ft_print_u(unsigned int nb)
@@ -119,7 +114,7 @@ void	ft_process_pos_nbr_umax(t_flags arg)
 	{
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
-			ft_print_umax();
+			ft_putnbr(UINT_MAX);
 		ft_print_space(arg, zero + 10);
 	}
 	else
@@ -127,7 +122,7 @@ void	ft_process_pos_nbr_umax(t_flags arg)
 		ft_print_space(arg, zero + 10);
 		ft_print_zero(zero);
 		if (!(arg.dot && arg.max == 0))
-			ft_print_umax();
+			ft_putnbr(UINT_MAX);
 	}
 }
 

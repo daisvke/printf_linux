@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 01:28:43 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 03:08:54 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ typedef struct s_flags
 
 int		ft_baselen(long l, int base);
 int		ft_count_zero(t_flags arg, int len);
-void	ft_ltoa(long n);
 void	ft_print_di_l(int n, long l);
 void	ft_print_hex(size_t nb, char *base);
 void	ft_print_p(size_t nb);
 void	ft_print_space(t_flags arg, int len);
 void    ft_print_u(unsigned int nb);
-void	ft_print_umax(void);
 void	ft_print_zero(int len);
 int		ft_printf(const char *fmt, ...);
 void	ft_process_c(va_list ap, t_flags arg);
@@ -72,6 +70,7 @@ void	ft_read_minus(t_flags *arg);
 bool	ft_read_nbr(t_flags *arg);
 bool	ft_read_sp(t_flags *arg);
 bool	ft_read_wc(t_flags *arg, va_list ap);
+void	ft_read_whitespace(t_flags *arg);
 void	ft_read_zero(t_flags *arg);
 void	ft_redirect_sp(va_list ap, t_flags arg);
 t_flags	ft_set_flags(char *s, va_list ap);

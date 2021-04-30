@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/29 00:29:10 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 03:10:09 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_flags	ft_set_flags(char *s, va_list ap)
 	ft_read_zero(&arg);
 	ft_read_minus(&arg);
 	ft_read_zero(&arg);
+	ft_read_whitespace(&arg);
 	if (!ft_read_wc(&arg, ap) || !ft_read_nbr(&arg) || \
 		!ft_read_dot(&arg) || !ft_read_wc(&arg, ap) || \
 		!ft_read_nbr(&arg) || !ft_read_sp(&arg))
@@ -66,7 +67,7 @@ void	ft_read_fmt(va_list ap, char *s)
 			if (arg.sp)
 			{
 				ft_redirect_sp(ap, arg);
-	/*	
+/*		
 				printf("\n\n=======================\n");
 				printf("minus:\t%d\n", arg.minus);
 				printf("zero:\t%d\n", arg.zero);
