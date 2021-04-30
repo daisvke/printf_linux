@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 03:10:09 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 03:40:30 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,12 @@ void	ft_read_fmt(va_list ap, char *s)
 			if (arg.sp)
 			{
 				ft_redirect_sp(ap, arg);
-/*		
-				printf("\n\n=======================\n");
-				printf("minus:\t%d\n", arg.minus);
-				printf("zero:\t%d\n", arg.zero);
-				printf("dot:\t%d\n", arg.dot);
-				printf("min:\t%d\n", arg.min);
-				printf("max:\t%d\n", arg.max);
-				printf("wc:\t%d\n", arg.wc);
-				printf("sp:\t%c\n", arg.sp);
-				printf("len:\t%d\n", arg.len);
-				printf("=======================\n\n");*/
 				s += arg.len;
 			}
 			else
-			{
-				ft_putchar(*s);
-				++s;
-			}
+				ft_putchar(*s++);
 		}
 		else
-		{
-			ft_putchar(*s);
-			++s;
-		}
+			ft_putchar(*s++);
 	}
 }
