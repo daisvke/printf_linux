@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/28 23:59:49 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 02:05:21 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,49 @@ int	ft_baselen(long l, int base)
 	++len;
 	return (len);
 }
-
-char	*ft_ltoa(long n)
+/*
+void	ft_ltoa(long n)
 {
-	char	*res;
 	int		len;
+	long	tmp;
 	long	nb;
 
 	nb = n;
 	len = ft_intlen(nb);
-	res = malloc(sizeof(*res) * (len + 1));
-	if (!res)
-		return (0);
-	res[len] = 0;
 	if (nb < 0)
 		nb = -nb;
+	if (n < 0)
+		ft_putchar('-');
 	while (len--)
 	{
-		res[len] = nb % 10 + '0';
-		nb /= 10;
+		tmp = nb / (10^len);
+		printf("======%ld=====\n", tmp);
+		ft_putchar(tmp % 10 + '0');
 	}
+}*/
+
+void	ft_ltoa(long n)
+{
+	int		len;
+	int		len_tmp;
+	long	digit;
+	long	tmp;
+	long	nb;
+
+	nb = n;
+	len = ft_intlen(nb);
+	if (nb < 0)
+		nb = -nb;
 	if (n < 0)
-		res[0] = '-';
-	return (res);
+		ft_putchar('-');
+	len_tmp = len - 1;
+	digit = 1;
+	while (len_tmp--)
+		digit *= 10; 
+	while (len--)
+	{
+		tmp = nb / digit;
+		digit /= 10;
+		ft_putchar(tmp % 10 + '0');
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/27 14:19:20 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 01:12:39 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 size_t	ft_check_p(va_list ap)
 {
-	int		n;
 	size_t	h;
-	va_list	cp;
 
-	n = -1;
-	while (n < 0 && ap)
-	{
-		va_copy(cp, ap);
-		n = va_arg(cp, int);
-		h = va_arg(ap, size_t);
-	}
-	va_end(cp);
+	h = va_arg(ap, size_t);
 	if (!h)
 	{
 		ft_putstr("(nil)");
