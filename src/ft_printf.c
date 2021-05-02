@@ -6,15 +6,29 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 00:00:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/19 20:47:51 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/01 21:00:22 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include "../inc/ft_printf.h"
 
+void	ft_init_arg(t_flags *arg)
+{
+	arg->minus = 0;
+	arg->zero = 0;
+	arg->dot = 0;
+	arg->wc = 0;
+	arg->min = 0;	
+	arg->max = 0;
+	arg->sp = 0;
+	arg->len = 0;
+	arg->s = 0;
+}
+
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
+	t_flags	arg;
 	char	*s;
 
 	if (!fmt)
@@ -23,8 +37,8 @@ int	ft_printf(const char *fmt, ...)
 	if (!s)
 		return (ERROR);
 	va_start(ap, fmt);
-	ft_read_fmt(ap, s);//ret nb of char printed
+	ft_read_fmt(&arg, ap, s);
 	va_end(ap);
 	free(s);
-	return (EMPTY_FMT);
+	return (arg.res);
 }

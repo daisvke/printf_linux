@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 03:13:10 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/04/30 17:42:45 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	ft_read_dot(t_flags *arg)
 	}
 	else if (*(arg->s) == '.' && *(arg->s + 1) == '.')
 	{
-		ft_bzero(&arg, sizeof(arg));
+		ft_init_arg(arg);
 		return (false);
 	}
 	return (true);

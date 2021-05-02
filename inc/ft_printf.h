@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 16:13:00 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/01 22:29:41 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define HEX_UPPER "0123456789ABCDEF"
 # define ERROR -1
 # define EMPTY_FMT 0
+# define NULL_S "(null)"
 
 // TO DEL
 # include <stdio.h>
@@ -38,40 +39,44 @@ typedef struct s_flags
 	char	sp;
 	int		len;
 	char	*s;
+	int		res;
 }				t_flags;
 
 int		ft_baselen(long l, int base);
-int		ft_count_zero(t_flags arg, int len);
-void	ft_print_di_l(int n, long l);
-void	ft_print_hex(size_t nb, char *base);
-void	ft_print_p(size_t nb);
-void	ft_print_space(t_flags arg, int len);
-void    ft_print_u(unsigned int nb);
-void	ft_print_zero(int len);
+int		ft_count_zero(t_flags *arg, int len);
+void	ft_init_arg(t_flags *arg);
+void	ft_print_di_l(t_flags *arg, int n, long l);
+void	ft_print_hex(t_flags *arg, size_t nb, char *base);
+void	ft_print_p(t_flags *arg, size_t nb);
+void	ft_print_space(t_flags *arg, int len);
+void    ft_print_u(t_flags *arg, unsigned int nb);
+void	ft_print_zero(t_flags *arg, int len);
 int		ft_printf(const char *fmt, ...);
-void	ft_process_c(va_list ap, t_flags arg);
-void	ft_process_s(va_list ap, t_flags arg);
-void	ft_process_di(va_list ap, t_flags arg);
-void	ft_process_neg_nbr(t_flags arg, int n, long l);
-void	ft_process_p(va_list ap, t_flags arg);
-void	ft_process_per(void);
-void	ft_process_pos_nbr(t_flags arg, long n);
-void	ft_process_pos_nbr_u(t_flags arg, long n);
-void	ft_process_pos_nbr_umax(t_flags arg);
-void	ft_process_u(va_list ap, t_flags arg);
-void	ft_process_x(va_list ap, t_flags arg);
-void	ft_process_x2(va_list ap, t_flags arg);
-void	ft_putnchar(int c, size_t n);
-void	ft_putnstr(char *s, int n);
+void	ft_process_c(va_list ap, t_flags *arg);
+void	ft_process_s(va_list ap, t_flags *arg);
+void	ft_process_di(va_list ap, t_flags *arg);
+void	ft_process_neg_nbr(t_flags *arg, int n, long l);
+void	ft_process_p(va_list ap, t_flags *arg);
+void	ft_process_per(t_flags *arg);
+void	ft_process_pos_nbr(t_flags *arg, long n);
+void	ft_process_pos_nbr_u(t_flags *arg, long n);
+void	ft_process_pos_nbr_umax(t_flags *arg);
+void	ft_process_u(va_list ap, t_flags *arg);
+void	ft_process_x(va_list ap, t_flags *arg);
+void	ft_process_x2(va_list ap, t_flags *arg);
+void	ft_putnbr_res(t_flags *arg, long long int nb);
+void	ft_putnchar(t_flags *arg, int c, size_t n);
+void	ft_putnstr(t_flags *arg, char *s, int n);
+void	ft_putstr_res(t_flags *arg, char *str);
 bool	ft_read_dot(t_flags *arg);
-void	ft_read_fmt(va_list ap, char *s);
+void	ft_read_fmt(t_flags *arg, va_list ap, char *s);
 void	ft_read_minus(t_flags *arg);
 bool	ft_read_nbr(t_flags *arg);
 bool	ft_read_sp(t_flags *arg);
 bool	ft_read_wc(t_flags *arg, va_list ap);
 void	ft_read_whitespace(t_flags *arg);
 void	ft_read_zero(t_flags *arg);
-void	ft_redirect_sp(va_list ap, t_flags arg);
-t_flags	ft_set_flags(char *s, va_list ap);
+void	ft_redirect_sp(va_list ap, t_flags *arg);
+int		ft_set_flags(t_flags *arg, char *s, va_list ap);
 
 #endif

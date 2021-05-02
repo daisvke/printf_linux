@@ -7,12 +7,12 @@ RM			=	rm -rf
 
 SRC_DIR		=	src/
 SRC_FILES	=	ft_printf.c \
-				print_utils.c \
 				proc_1.c \
 				proc_2.c \
-				proc_utils.c \
 				read.c \
 				utils_nbr.c \
+				utils_print.c \
+				utils_proc.c \
 				utils_str.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ_DIR		=	obj/

@@ -6,23 +6,43 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/04/30 02:26:24 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/01 21:22:27 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-void	ft_print_hex(size_t nb, char *base)
+void	ft_putnbr_res(t_flags *arg, long long int nb)
 {
-	if (nb >= 16)
-		ft_print_hex(nb / 16, base);
-	ft_putchar(base[nb % 16]);
+	arg->res++;
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+	}
+	if (nb < 10)
+	{
+		ft_putchar(nb + '0');
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr_res(arg, nb / 10);
+		ft_putnbr(nb % 10);
+	}
 }
 
-void	ft_print_p(size_t nb)
+void	ft_print_hex(t_flags *arg, size_t nb, char *base)
 {
-	ft_putstr("0x");
-	ft_print_hex(nb, HEX_LOWER);
+	if (nb >= 16)
+		ft_print_hex(arg, nb / 16, base);
+	ft_putchar(base[nb % 16]);
+	arg->res++;
+}
+
+void	ft_print_p(t_flags *arg, size_t nb)
+{
+	ft_putstr_res(arg, "0x");
+	ft_print_hex(arg, nb, HEX_LOWER);
 }
 
 int	ft_baselen(long l, int base)
