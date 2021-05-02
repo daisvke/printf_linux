@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 02:28:58 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:13:56 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	ft_process_x(va_list ap, t_flags *arg)
 	int		zero;
 
 	h = va_arg(ap, size_t);
-	if (h != 0 && arg->dot && !arg->max)
-		arg->dot = 0;
+	ft_check_arg(arg, h);
 	zero = ft_count_zero(arg, ft_baselen(h, 16));
 	if (arg->minus)
 	{
@@ -83,8 +82,7 @@ void	ft_process_x2(va_list ap, t_flags *arg)
 	int		zero;
 
 	h = va_arg(ap, size_t);
-	if (h != 0 && arg->dot && !arg->max)
-		arg->dot = 0;
+	ft_check_arg(arg, h);
 	zero = ft_count_zero(arg, ft_baselen(h, 16));
 	if (arg->minus)
 	{

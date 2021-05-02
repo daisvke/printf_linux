@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/01 22:29:41 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:13:56 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_flags
 }				t_flags;
 
 int		ft_baselen(long l, int base);
+void	ft_check_arg(t_flags *arg, long nb);
 int		ft_count_zero(t_flags *arg, int len);
 void	ft_init_arg(t_flags *arg);
 void	ft_print_di_l(t_flags *arg, int n, long l);

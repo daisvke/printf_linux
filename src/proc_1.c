@@ -6,11 +6,19 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 02:26:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:17:55 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+void	ft_check_arg(t_flags *arg, long nb)
+{
+	if (arg->dot && !arg->max)
+		arg->zero = 0;
+	if (nb != 0 && arg->dot && !arg->max)
+		arg->dot = 0;
+}
 
 void	ft_process_c(va_list ap, t_flags *arg)
 {
@@ -90,8 +98,7 @@ void	ft_process_pos_nbr_u(t_flags *arg, long n)
 {
 	int	zero;
 
-	if (n != 0 && arg->dot && !arg->max)
-		arg->dot = 0;
+	ft_check_arg(arg, n);
 	zero = ft_count_zero(arg, ft_nbrlen(n));
 	if (arg->minus)
 	{
@@ -113,6 +120,7 @@ void	ft_process_pos_nbr_umax(t_flags *arg)
 {
 	int	zero;
 
+	ft_check_arg(arg, 1);
 	zero = ft_count_zero(arg, 10);
 	if (arg->minus)
 	{

@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 02:26:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:14:34 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	ft_process_pos_nbr(t_flags *arg, long n)
 {
 	int	zero;
 
-	if (n != 0 && arg->dot && !arg->max)
-		arg->dot = 0;
+	ft_check_arg(arg, n);
 	zero = ft_count_zero(arg, ft_nbrlen(n));
 	if (arg->minus)
 	{
@@ -88,6 +87,7 @@ void	ft_process_neg_nbr(t_flags *arg, int n, long l)
 {
 	int	zero;
 
+	ft_check_arg(arg, 1);
 	if (arg->min)
 		arg->min--;
 	zero = ft_count_zero(arg, ft_nbrlen(l));
