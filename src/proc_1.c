@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 04:47:43 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 01:50:04 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_process_c(va_list ap, t_flags *arg)
 	if (arg->minus)
 		ft_putchar(c);
 	ft_print_space(arg, 1);
-	if (!arg->min || (arg->min && !arg->minus))
+	if ((!arg->minus && !arg->min) || (arg->min && !arg->minus))
 		ft_putchar(c);
 	arg->res++;
 }
