@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 04:14:34 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:51:20 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_count_zero(t_flags *arg, int len)
 		else if ((arg->zero && arg->max) || (arg->dot && arg->max))
 			zero = arg->max - len;
 	}
+	if (arg->max < 0 && arg->zero)
+		zero = arg->min - len;
 	if (zero < 0)
 		zero = 0;
 	return (zero);
