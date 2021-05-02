@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/01 21:22:27 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 01:28:56 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,17 @@ void	ft_print_hex(t_flags *arg, size_t nb, char *base)
 
 void	ft_print_p(t_flags *arg, size_t nb)
 {
-	ft_putstr_res(arg, "0x");
-	ft_print_hex(arg, nb, HEX_LOWER);
+	if (!nb)
+	{	
+		ft_putstr("(nil)");
+		arg->res -= 1;
+	}
+	else
+	{
+		ft_putstr_res(arg, "0x");
+		arg->res += 2;
+		ft_print_hex(arg, nb, HEX_LOWER);
+	}
 }
 
 int	ft_baselen(long l, int base)
