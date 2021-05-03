@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:17:46 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 04:36:14 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_count_zero(t_flags *arg, int len);
 void	ft_init_arg(t_flags *arg);
 void	ft_print_di_l(t_flags *arg, int n, long l);
 void	ft_print_hex(t_flags *arg, size_t nb, char *base);
+void	ft_print_oct(t_flags *arg, size_t nb);
 void	ft_print_p(t_flags *arg, size_t nb);
 void	ft_print_space(t_flags *arg, int len);
 void    ft_print_u(t_flags *arg, unsigned int nb);
@@ -57,6 +58,7 @@ void	ft_process_c(va_list ap, t_flags *arg);
 void	ft_process_s(va_list ap, t_flags *arg);
 void	ft_process_di(va_list ap, t_flags *arg);
 void	ft_process_neg_nbr(t_flags *arg, int n, long l);
+void	ft_process_o(va_list ap, t_flags *arg);
 void	ft_process_p(va_list ap, t_flags *arg);
 void	ft_process_per(t_flags *arg);
 void	ft_process_pos_nbr(t_flags *arg, long n);

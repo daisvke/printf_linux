@@ -6,11 +6,37 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:21:31 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 04:36:14 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+void	ft_process_o(va_list ap, t_flags *arg)
+{
+	size_t	o;
+	int		zero;
+	int		len;
+
+	o = va_arg(ap, size_t);
+	ft_check_arg(arg, o);
+	len = ft_baselen(o, 8) + 2;
+	zero = ft_count_zero(arg, len);
+	if (arg->minus)
+	{
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_print_oct(arg, o);
+		ft_print_space(arg, zero + len);
+	}
+	else
+	{
+		ft_print_space(arg, zero + len);
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_print_oct(arg, o);
+	}
+}
 
 void	ft_process_p(va_list ap, t_flags *arg)
 {

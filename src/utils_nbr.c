@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 01:28:56 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 04:36:14 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ void	ft_print_hex(t_flags *arg, size_t nb, char *base)
 	if (nb >= 16)
 		ft_print_hex(arg, nb / 16, base);
 	ft_putchar(base[nb % 16]);
+	arg->res++;
+}
+
+void	ft_print_oct(t_flags *arg, size_t nb)
+{
+	if (nb >= 8)
+		ft_print_oct(arg, nb / 8);
+	ft_putchar("012345678"[nb % 8]);
 	arg->res++;
 }
 

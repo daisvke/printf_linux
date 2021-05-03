@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:17:46 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 04:30:33 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_redirect_sp(va_list ap, t_flags *arg)
 		ft_process_p(ap, arg);
 	else if (arg->sp == 'd' || arg->sp == 'i')
 		ft_process_di(ap, arg);
+	else if (arg->sp == 'o')
+		ft_process_o(ap, arg);
 	else if (arg->sp == 'u')
 		ft_process_u(ap, arg);
 	else if (arg->sp == 'x')
