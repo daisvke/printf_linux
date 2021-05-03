@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:36:14 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 20:02:23 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_process_o(va_list ap, t_flags *arg)
 
 void	ft_process_p(va_list ap, t_flags *arg)
 {
-	/*
+/*
 	size_t	h;
 	int		len;
 	int		n;

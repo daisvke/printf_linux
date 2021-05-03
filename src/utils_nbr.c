@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:36:14 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 20:17:54 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putnbr_res(t_flags *arg, long long int nb)
 {
-	arg->res++;
 	if (nb < 0)
 	{
 		write(1, "-", 1);
@@ -29,6 +28,7 @@ void	ft_putnbr_res(t_flags *arg, long long int nb)
 		ft_putnbr_res(arg, nb / 10);
 		ft_putnbr(nb % 10);
 	}
+	arg->res++;
 }
 
 void	ft_print_hex(t_flags *arg, size_t nb, char *base)
@@ -52,12 +52,11 @@ void	ft_print_p(t_flags *arg, size_t nb)
 	if (!nb)
 	{	
 		ft_putstr("(nil)");
-		arg->res -= 1;
+		arg->res += 5;
 	}
 	else
 	{
 		ft_putstr_res(arg, "0x");
-		arg->res += 2;
 		ft_print_hex(arg, nb, HEX_LOWER);
 	}
 }
