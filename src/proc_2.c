@@ -6,19 +6,11 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 00:59:18 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 04:21:31 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
-size_t	ft_check_p(va_list ap)
-{
-	size_t	h;
-
-	h = va_arg(ap, size_t);
-	return (h);
-}
 
 void	ft_process_p(va_list ap, t_flags *arg)
 {

@@ -6,17 +6,21 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/02 04:03:30 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/03 02:06:13 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-void	ft_read_minus(t_flags *arg)
+void	ft_read_zero_minus(t_flags *arg)
 {
-	while (*(arg->s) == '-')
+	while ((*(arg->s) == '0') || (*(arg->s) == '-'))
 	{
-		arg->minus = true;
+		if (*(arg->s) == '0')
+			if (!arg->minus)
+					arg->zero = true;
+		if (*(arg->s) == '-')
+			arg->minus = true;
 		arg->len++;
 		arg->s++;
 	}
@@ -36,17 +40,6 @@ bool	ft_read_dot(t_flags *arg)
 		return (false);
 	}
 	return (true);
-}
-
-void	ft_read_zero(t_flags *arg)
-{
-	while (*(arg->s) == '0')
-	{
-		if (!arg->minus)
-				arg->zero = true;
-		arg->len++;
-		arg->s++;
-	}
 }
 
 bool	ft_read_nbr(t_flags *arg)
