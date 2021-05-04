@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 05:23:16 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # define ERROR -1
 # define EMPTY_FMT 0
 # define NULL_S "(null)"
-
-// TO DEL
-# include <stdio.h>
 
 typedef struct s_flags
 {
