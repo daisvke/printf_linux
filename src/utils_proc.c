@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 01:46:20 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:48:18 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_process_neg_nbr(t_flags *arg, int n, long l)
 	int	zero;
 
 	ft_check_arg(arg, 1);
-	if (arg->min)
+	if (arg->min && n != INT_MIN)
 		arg->min--;
 	zero = ft_count_zero(arg, ft_nbrlen(l));
 	if (arg->minus)

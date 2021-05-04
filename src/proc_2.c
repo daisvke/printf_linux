@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:02:29 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:26:44 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_process_o(va_list ap, t_flags *arg)
 {
-	size_t	o;
-	int		zero;
-	int		len;
+	unsigned int	o;
+	int				zero;
+	int				len;
 
-	o = va_arg(ap, size_t);
+	o = va_arg(ap, unsigned int);
 	ft_check_arg(arg, o);
 	len = ft_baselen(o, 8);
 	zero = ft_count_zero(arg, len);
@@ -97,10 +97,10 @@ void	ft_process_p(va_list ap, t_flags *arg)
 
 void	ft_process_x(va_list ap, t_flags *arg)
 {
-	size_t	h;
-	int		zero;
+	unsigned int	h;
+	int				zero;
 
-	h = va_arg(ap, size_t);
+	h = va_arg(ap, unsigned int);
 	ft_check_arg(arg, h);
 	zero = ft_count_zero(arg, ft_baselen(h, 16));
 	if (arg->minus)
@@ -121,10 +121,10 @@ void	ft_process_x(va_list ap, t_flags *arg)
 
 void	ft_process_x2(va_list ap, t_flags *arg)
 {
-	size_t	h;
-	int		zero;
+	unsigned int	h;
+	int				zero;
 
-	h = va_arg(ap, size_t);
+	h = va_arg(ap, unsigned int);
 	ft_check_arg(arg, h);
 	zero = ft_count_zero(arg, ft_baselen(h, 16));
 	if (arg->minus)

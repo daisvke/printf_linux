@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 04:30:33 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:33:30 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	ft_set_flags(t_flags *arg, char *s, va_list ap)
 		!ft_read_dot(arg) || !ft_read_wc(arg, ap) || \
 		!ft_read_nbr(arg) || !ft_read_sp(arg))
 		ft_init_arg(arg);
+	if (arg->minus && arg->zero)
+		arg->zero = false;
 	return (arg->res);
 }
 

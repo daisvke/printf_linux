@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:01:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:24:07 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_putnbr_res(t_flags *arg, long long int nb)
 	arg->res++;
 }
 
-void	ft_print_hex(t_flags *arg, unsigned int nb, char *base)
+void	ft_print_hex(t_flags *arg, size_t nb, char *base)
 {
 	if (nb >= 16)
 		ft_print_hex(arg, nb / 16, base);
@@ -56,7 +56,7 @@ void	ft_print_p(t_flags *arg, size_t nb)
 	}
 }
 
-int	ft_baselen(unsigned int l, unsigned int base)
+int	ft_baselen(size_t l, size_t base)
 {
 	int	len;
 
