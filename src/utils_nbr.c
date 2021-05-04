@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 20:17:54 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:01:23 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,24 @@ void	ft_putnbr_res(t_flags *arg, long long int nb)
 	arg->res++;
 }
 
-void	ft_print_hex(t_flags *arg, size_t nb, char *base)
+void	ft_print_hex(t_flags *arg, unsigned int nb, char *base)
 {
 	if (nb >= 16)
 		ft_print_hex(arg, nb / 16, base);
-	ft_putchar(base[nb % 16]);
-	arg->res++;
+	ft_putnchar(arg, base[nb % 16], 1);
 }
 
-void	ft_print_oct(t_flags *arg, size_t nb)
+void	ft_print_oct(t_flags *arg, unsigned int nb)
 {
 	if (nb >= 8)
 		ft_print_oct(arg, nb / 8);
-	ft_putchar("012345678"[nb % 8]);
-	arg->res++;
+	ft_putnchar(arg, "012345678"[nb % 8], 1);
 }
 
 void	ft_print_p(t_flags *arg, size_t nb)
 {
 	if (!nb)
-	{	
-		ft_putstr("(nil)");
-		arg->res += 5;
-	}
+		ft_putstr_res(arg, "(nil)");
 	else
 	{
 		ft_putstr_res(arg, "0x");
@@ -61,7 +56,7 @@ void	ft_print_p(t_flags *arg, size_t nb)
 	}
 }
 
-int	ft_baselen(long l, int base)
+int	ft_baselen(unsigned int l, unsigned int base)
 {
 	int	len;
 

@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 20:02:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:02:29 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_process_o(va_list ap, t_flags *arg)
 
 	o = va_arg(ap, size_t);
 	ft_check_arg(arg, o);
-	len = ft_baselen(o, 8) + 2;
+	len = ft_baselen(o, 8);
 	zero = ft_count_zero(arg, len);
 	if (arg->minus)
 	{
