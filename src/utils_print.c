@@ -6,11 +6,22 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:33:30 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 04:50:39 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+bool	ft_read_sp(t_flags *arg)
+{
+	if (ft_strchr(SP_LIST, *(arg->s)))
+	{
+		arg->sp = *(arg->s);
+		arg->len++;
+		arg->s++;
+	}
+	return (true);
+}
 
 void	ft_redirect_sp(va_list ap, t_flags *arg)	
 {

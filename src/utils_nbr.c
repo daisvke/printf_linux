@@ -6,11 +6,27 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:24:07 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 04:50:39 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+void	ft_check_arg(t_flags *arg, long nb)
+{
+	if (arg->dot && !arg->max)
+		arg->zero = false;
+	if (nb != 0 && arg->dot && !arg->max)
+		arg->dot = false;
+}
+
+void	ft_print_di_l(t_flags *arg, int n, long l)
+{
+	if (n == INT_MIN)
+		ft_putnbr_res(arg, INT_MAX + 1L);
+	else
+		ft_putnbr_res(arg, l);
+}
 
 void	ft_putnbr_res(t_flags *arg, long long int nb)
 {
@@ -31,41 +47,46 @@ void	ft_putnbr_res(t_flags *arg, long long int nb)
 	arg->res++;
 }
 
-void	ft_print_hex(t_flags *arg, size_t nb, char *base)
+void	ft_process_pos_nbr_u(t_flags *arg, long n)
 {
-	if (nb >= 16)
-		ft_print_hex(arg, nb / 16, base);
-	ft_putnchar(arg, base[nb % 16], 1);
-}
+	int	zero;
 
-void	ft_print_oct(t_flags *arg, unsigned int nb)
-{
-	if (nb >= 8)
-		ft_print_oct(arg, nb / 8);
-	ft_putnchar(arg, "012345678"[nb % 8], 1);
-}
-
-void	ft_print_p(t_flags *arg, size_t nb)
-{
-	if (!nb)
-		ft_putstr_res(arg, "(nil)");
+	ft_check_arg(arg, n);
+	zero = ft_count_zero(arg, ft_nbrlen(n));
+	if (arg->minus)
+	{
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_print_u(arg, n);
+		ft_print_space(arg, zero + ft_nbrlen(n));
+	}
 	else
 	{
-		ft_putstr_res(arg, "0x");
-		ft_print_hex(arg, nb, HEX_LOWER);
+		ft_print_space(arg, zero + ft_nbrlen(n));
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_print_u(arg, n);
 	}
 }
 
-int	ft_baselen(size_t l, size_t base)
+void	ft_process_pos_nbr_umax(t_flags *arg)
 {
-	int	len;
+	int	zero;
 
-	len = 0;
-	while (l >= base)
+	ft_check_arg(arg, 1);
+	zero = ft_count_zero(arg, 10);
+	if (arg->minus)
 	{
-		l /= base;
-		++len;
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_putnbr_res(arg, UINT_MAX);
+		ft_print_space(arg, zero + 10);
 	}
-	++len;
-	return (len);
+	else
+	{
+		ft_print_space(arg, zero + 10);
+		ft_print_zero(arg, zero);
+		if (!(arg->dot && arg->max == 0))
+			ft_putnbr_res(arg, UINT_MAX);
+	}
 }

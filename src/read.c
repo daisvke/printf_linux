@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 04:50:39 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,6 @@ bool	ft_read_wc(t_flags *arg, va_list ap)
 		}
 		else if (arg->dot && arg->wc)
 			arg->max = va_arg(ap, int);
-	}
-	return (true);
-}
-
-bool	ft_read_sp(t_flags *arg)
-{
-	if (ft_strchr(SP_LIST, *(arg->s)))
-	{
-		arg->sp = *(arg->s);
-		arg->len++;
-		arg->s++;
 	}
 	return (true);
 }

@@ -6,19 +6,11 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 04:50:39 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
-void	ft_check_arg(t_flags *arg, long nb)
-{
-	if (arg->dot && !arg->max)
-		arg->zero = false;
-	if (nb != 0 && arg->dot && !arg->max)
-		arg->dot = false;
-}
 
 void	ft_process_c(va_list ap, t_flags *arg)
 {
@@ -61,14 +53,6 @@ void	ft_process_s(va_list ap, t_flags *arg)
 		ft_putnstr(arg, s, arg->max);
 }
 
-void	ft_print_di_l(t_flags *arg, int n, long l)
-{
-	if (n == INT_MIN)
-		ft_putnbr_res(arg, INT_MAX + 1L);
-	else
-		ft_putnbr_res(arg, l);
-}
-
 void	ft_process_di(va_list ap, t_flags *arg)
 {
 	int		n;
@@ -90,50 +74,6 @@ void	ft_print_u(t_flags *arg, unsigned int nb)
 		ft_print_u(arg, nb / 10);
 	ft_putchar(nb % 10 + '0');
 	arg->res++;
-}
-
-void	ft_process_pos_nbr_u(t_flags *arg, long n)
-{
-	int	zero;
-
-	ft_check_arg(arg, n);
-	zero = ft_count_zero(arg, ft_nbrlen(n));
-	if (arg->minus)
-	{
-		ft_print_zero(arg, zero);
-		if (!(arg->dot && arg->max == 0))
-			ft_print_u(arg, n);
-		ft_print_space(arg, zero + ft_nbrlen(n));
-	}
-	else
-	{
-		ft_print_space(arg, zero + ft_nbrlen(n));
-		ft_print_zero(arg, zero);
-		if (!(arg->dot && arg->max == 0))
-			ft_print_u(arg, n);
-	}
-}
-
-void	ft_process_pos_nbr_umax(t_flags *arg)
-{
-	int	zero;
-
-	ft_check_arg(arg, 1);
-	zero = ft_count_zero(arg, 10);
-	if (arg->minus)
-	{
-		ft_print_zero(arg, zero);
-		if (!(arg->dot && arg->max == 0))
-			ft_putnbr_res(arg, UINT_MAX);
-		ft_print_space(arg, zero + 10);
-	}
-	else
-	{
-		ft_print_space(arg, zero + 10);
-		ft_print_zero(arg, zero);
-		if (!(arg->dot && arg->max == 0))
-			ft_putnbr_res(arg, UINT_MAX);
-	}
 }
 
 void	ft_process_u(va_list ap, t_flags *arg)
