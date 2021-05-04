@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:27 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:26:44 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,6 @@ void	ft_process_o(va_list ap, t_flags *arg)
 
 void	ft_process_p(va_list ap, t_flags *arg)
 {
-/*
-	size_t	h;
-	int		len;
-	int		n;
-
-	len = 0;
-	h = ft_check_p(ap);
-	if (arg->min)
-	{
-		if (h)
-			len = arg->min - ft_baselen(h, 16) - 2;
-		else
-			len = arg->min - 5;
-		if (len > 0)
-		{
-			n = len;
-			if (arg->minus)
-				ft_print_p(arg, h);
-			while (n--)
-				ft_putchar(' ');
-		}
-	}
-	if (!arg->min || (arg->min && len > 0 && !arg->minus) || \
-		(arg->min && len <= 0))
-		ft_print_p(arg, h);
-*/
-
-
 	size_t	h;
 	int		zero;
 	int		len;

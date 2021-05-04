@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:48:18 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	ft_print_space(t_flags *arg, int len)
 	if (arg->sp == 's')
 	{
 		if (arg->max > len)
-			space =  arg->min - len;
+			space = arg->min - len;
 		else
 			space = arg->min - arg->max;
 	}
-	else 
+	else
 	{
 		if (arg->sp != 'c' && arg->max > len)
 			space = arg->min - arg->max;

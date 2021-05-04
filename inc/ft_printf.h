@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:43:20 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_print_hex(t_flags *arg, size_t nb, char *base);
 void	ft_print_oct(t_flags *arg, unsigned int nb);
 void	ft_print_p(t_flags *arg, size_t nb);
 void	ft_print_space(t_flags *arg, int len);
-void    ft_print_u(t_flags *arg, unsigned int nb);
+void	ft_print_u(t_flags *arg, unsigned int nb);
 void	ft_print_zero(t_flags *arg, int len);
 int		ft_printf(const char *fmt, ...);
 void	ft_process_c(va_list ap, t_flags *arg);

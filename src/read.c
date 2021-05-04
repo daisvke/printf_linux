@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/03 02:06:13 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_read_zero_minus(t_flags *arg)
 	{
 		if (*(arg->s) == '0')
 			if (!arg->minus)
-					arg->zero = true;
+				arg->zero = true;
 		if (*(arg->s) == '-')
 			arg->minus = true;
 		arg->len++;
@@ -79,7 +79,6 @@ bool	ft_read_wc(t_flags *arg, va_list ap)
 				arg->zero = false;
 				arg->min = -(arg->min);
 			}
-
 		}
 		else if (arg->dot && arg->wc)
 			arg->max = va_arg(ap, int);

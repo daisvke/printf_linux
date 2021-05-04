@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 00:00:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/01 21:00:22 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -18,7 +18,7 @@ void	ft_init_arg(t_flags *arg)
 	arg->zero = 0;
 	arg->dot = 0;
 	arg->wc = 0;
-	arg->min = 0;	
+	arg->min = 0;
 	arg->max = 0;
 	arg->sp = 0;
 	arg->len = 0;

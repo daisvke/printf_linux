@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:01:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 02:46:03 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void	ft_process_di(va_list ap, t_flags *arg)
 		ft_process_pos_nbr(arg, n);
 }
 
-void    ft_print_u(t_flags *arg, unsigned int nb)
+void	ft_print_u(t_flags *arg, unsigned int nb)
 {
 	if (nb >= 10)
-			ft_print_u(arg, nb / 10);
+		ft_print_u(arg, nb / 10);
 	ft_putchar(nb % 10 + '0');
 	arg->res++;
 }
