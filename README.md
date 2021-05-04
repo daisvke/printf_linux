@@ -10,9 +10,9 @@ This work has been validated by the following tests:
 * [norminette v.3](https://github.com/alexandregv/norminette-action)
 
 <p align="center">
-  <img src="/screenshots/Mazoise_42TESTERS_PRINTF.png" width="100%" />
-  <img src="/screenshots/gavinfielder_pft.png" width="100%" />
-  <img src="/screenshots/Tripouille_printfTester.png" width="100%" />
+  <img src="/screenshots/Mazoise_42TESTERS_PRINTF.png" width="70%" />
+  <img src="/screenshots/gavinfielder_pft.png" width="70%" />
+  <img src="/screenshots/Tripouille_printfTester.png" width="70%" />
 </p>
 
 ### Description
