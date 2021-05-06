@@ -4,7 +4,7 @@ libftprintf.a is a library that contains ft_printf, a function that will mimic t
 This was originally a 42 school project.<br />
 
 This work has been validated by the following tests:
-* [42TESTERS-PRINTF&](https://github.com/Mazoise/42TESTERS-PRINTF)
+* [42TESTERS-PRINTF](https://github.com/Mazoise/42TESTERS-PRINTF)
 * [pft](https://github.com/gavinfielder/pft)
 * [printfTester](https://github.com/Tripouille/printfTester)
 * [norminette v.3](https://github.com/alexandregv/norminette-action)
