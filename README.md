@@ -21,6 +21,6 @@ This work has been validated by the following tests:
   ```
   int ft_printf(const char *, ...);
   ```
-* It does not do the buffer management like the real printf.
+* It does not take care of the buffer management like the real printf.
 * It will manage the following conversions: cspdiouxX%.
 * It will manage any combination of the following flags: '-0.*' and minimum fieldwidth with all conversions.
