@@ -28,6 +28,9 @@ This work has been validated by the following tests:
   ```
   __attribute__((format (printf, 1, 2)));
   ```
+  <p align="center">
+  <img src="/screenshots/attribute.png" width="70%" />
+</p>
 * It does not take care of the buffer management like the real printf.
 * It will manage the following conversions: cspdiouxX%.
 * It will manage any combination of the following flags: '-0.*' and 
