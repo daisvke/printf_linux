@@ -1,6 +1,7 @@
 # printf
 
-libftprintf.a is a library that contains ft_printf, a function that will mimic the real printf function.<br />
+libftprintf.a is a library that contains ft_printf,
+  a function that will mimic the real printf function.<br />
 This was originally a 42 school project.<br />
 
 This work has been validated by the following tests:
@@ -21,6 +22,13 @@ This work has been validated by the following tests:
   ```
   int ft_printf(const char *, ...);
   ```
+* the __attribute__ mechanism in the header allows us to attach
+  characteristics to function declarations to allow the compiler to perform
+  more error checking:
+  ```
+  __attribute__((format (printf, 1, 2)));
+  ```
 * It does not take care of the buffer management like the real printf.
 * It will manage the following conversions: cspdiouxX%.
-* It will manage any combination of the following flags: '-0.*' and minimum fieldwidth with all conversions.
+* It will manage any combination of the following flags: '-0.*' and 
+  minimum fieldwidth with all conversions.
