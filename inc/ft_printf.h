@@ -50,7 +50,8 @@ void	ft_print_p(t_flags *arg, size_t nb);
 void	ft_print_space(t_flags *arg, int len);
 void	ft_print_u(t_flags *arg, unsigned int nb);
 void	ft_print_zero(t_flags *arg, int len);
-int		ft_printf(const char *fmt, ...);
+int		ft_printf(const char *fmt, ...)
+		__attribute__((format (printf, 1, 2)));
 void	ft_process_c(va_list ap, t_flags *arg);
 void	ft_process_s(va_list ap, t_flags *arg);
 void	ft_process_di(va_list ap, t_flags *arg);
