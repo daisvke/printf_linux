@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 19:52:39 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 05:57:06 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 06:53:45 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,21 @@ void	ft_read_shp(t_flags *arg)
 		arg->len++;
 		arg->s++;
 	}
+}
+
+void	ft_read_space(t_flags *arg)
+{
+	if (!arg->plus)
+		arg->space = true;
+	arg->minus = false;
+	arg->len++;
+	arg->s++;
+}
+
+void	ft_read_plus(t_flags *arg)
+{
+	arg->space = false;
+	arg->plus = true;
+	arg->len++;
+	arg->s++;
 }

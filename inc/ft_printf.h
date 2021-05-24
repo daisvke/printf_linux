@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 05:59:33 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 06:18:37 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../libft/libft.h"
 
 # define SP_LIST "cspdiouxXn%"
-# define FG_LIST "#h0- *123456789."
+# define FG_LIST "#h0-+ *123456789."
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define ERROR -1
@@ -39,6 +39,8 @@ typedef struct s_flags
 	char	*s;
 	int		res;
 	bool	sharp;
+	bool	space;
+	bool	plus;
 }				t_flags;
 
 typedef struct s_sharp
@@ -82,11 +84,14 @@ bool	ft_read_dot(t_flags *arg);
 void	ft_read_fmt(t_flags *arg, va_list ap, char *s);
 void	ft_read_lm(t_flags *arg);
 void	ft_read_nbr(t_flags *arg);
+void	ft_read_space(t_flags *arg);
+void	ft_read_plus(t_flags *arg);
 void	ft_read_sp(t_flags *arg);
 void	ft_read_shp(t_flags *arg);
 bool	ft_read_wc(t_flags *arg, va_list ap);
-void	ft_read_whitespace(t_flags *arg);
+void	ft_read_space(t_flags *arg);
 void	ft_read_zero_minus(t_flags *arg);
+bool	ft_redirect_fg(va_list ap, t_flags *arg);
 void	ft_redirect_sp(va_list ap, t_flags *arg);
 int		ft_set_flags(t_flags *arg, char *s, va_list ap);
 

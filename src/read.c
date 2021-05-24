@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 23:08:07 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 05:57:40 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 06:42:43 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,4 @@ bool	ft_read_wc(t_flags *arg, va_list ap)
 	else if (arg->dot && arg->wc)
 		arg->max = va_arg(ap, int);
 	return (true);
-}
-
-void	ft_read_whitespace(t_flags *arg)
-{
-	ft_putchar(' ');
-	arg->len++;
-	arg->s++;
 }

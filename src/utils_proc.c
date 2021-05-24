@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 06:54:31 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	ft_process_pos_nbr(t_flags *arg, long n)
 
 	ft_check_arg(arg, n);
 	zero = ft_count_zero(arg, ft_nbrlen(n));
+	if (arg->space && !arg->plus)
+		ft_putnchar(arg, ' ', 1);
+	if (arg->plus)
+		ft_putnchar(arg, '+', 1);
 	if (arg->minus)
 	{
 		ft_print_zero(arg, zero);

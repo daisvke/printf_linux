@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 05:59:32 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 06:18:37 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ bool	ft_redirect_fg(va_list ap, t_flags *arg)
 		ft_read_lm(arg);
 	else if ((*(arg->s) == '0') || (*(arg->s) == '-'))
 		ft_read_zero_minus(arg);
+	else if (*(arg->s) == '+')
+		ft_read_plus(arg);
 	else if (*(arg->s) == ' ')
-		ft_read_whitespace(arg);
+		ft_read_space(arg);
 	else if (*(arg->s) == '*')
 		err = ft_read_wc(arg, ap);
 	else if (ft_isdigit(*(arg->s)))
@@ -78,7 +80,7 @@ int	ft_set_flags(t_flags *arg, char *s, va_list ap)
 		if (ft_strchr(FG_LIST, *(arg->s)))
 		{
 			if (!ft_redirect_fg(ap, arg))
-				ft_init_arg(arg);	
+				ft_init_arg(arg);
 		}
 		else
 			break ;
