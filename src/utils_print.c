@@ -6,13 +6,13 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/23 22:51:10 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 05:59:32 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-bool	ft_read_sp(t_flags *arg)
+void	ft_read_sp(t_flags *arg)
 {
 	if (ft_strchr(SP_LIST, *(arg->s)))
 	{
@@ -20,7 +20,6 @@ bool	ft_read_sp(t_flags *arg)
 		arg->len++;
 		arg->s++;
 	}
-	return (true);
 }
 
 void	ft_redirect_sp(va_list ap, t_flags *arg)	
@@ -47,17 +46,44 @@ void	ft_redirect_sp(va_list ap, t_flags *arg)
 		ft_process_per(arg);
 }
 
+bool	ft_redirect_fg(va_list ap, t_flags *arg)
+{
+	bool	err;
+
+	err = 1;
+	if (*(arg->s) == '#')
+		ft_read_shp(arg);
+	else if (*(arg->s) == 'h')
+		ft_read_lm(arg);
+	else if ((*(arg->s) == '0') || (*(arg->s) == '-'))
+		ft_read_zero_minus(arg);
+	else if (*(arg->s) == ' ')
+		ft_read_whitespace(arg);
+	else if (*(arg->s) == '*')
+		err = ft_read_wc(arg, ap);
+	else if (ft_isdigit(*(arg->s)))
+		ft_read_nbr(arg);
+	else if (*(arg->s) == '.')
+		err = ft_read_dot(arg);
+	return (err);
+}
+
 int	ft_set_flags(t_flags *arg, char *s, va_list ap)
 {
 	arg->len = 1;
 	s++;
 	arg->s = s;
-	ft_read_zero_minus(arg);
-	ft_read_whitespace(arg);
-	if (!ft_read_wc(arg, ap) || !ft_read_shp(arg) || !ft_read_nbr(arg) \
-		|| !ft_read_dot(arg) || !ft_read_wc(arg, ap) || !ft_read_nbr(arg) \
-		|| !ft_read_lm(arg) || !ft_read_sp(arg))
-		ft_init_arg(arg);
+	while (!ft_strchr(SP_LIST, *(arg->s)))
+	{
+		if (ft_strchr(FG_LIST, *(arg->s)))
+		{
+			if (!ft_redirect_fg(ap, arg))
+				ft_init_arg(arg);	
+		}
+		else
+			break ;
+	}
+	ft_read_sp(arg);
 	if (arg->minus && arg->zero)
 		arg->zero = false;
 	return (arg->res);

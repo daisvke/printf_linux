@@ -6,40 +6,32 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 19:52:39 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 02:59:27 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 05:57:06 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-bool	ft_read_lm(t_flags *arg)
+void	ft_read_lm(t_flags *arg)
 {
-	if (*(arg->s) == 'h')
+	if (*(arg->s + 1) == 'h')
 	{
-		if (*(arg->s + 1) == 'h')
-		{
-			arg->s += 2;
-			arg->len += 2;
-		}
-		else
-		{
-			arg->len++;
-			arg->s++;
-		}
+		arg->len += 2;
+		arg->s += 2;
 	}
-	return (true);
+	else
+	{
+		arg->len++;
+		arg->s++;
+	}
 }
 
-bool	ft_read_shp(t_flags *arg)
+void	ft_read_shp(t_flags *arg)
 {
-	if (*(arg->s) == '#')
+	arg->sharp = true;
+	while (*(arg->s) == '#')
 	{
-		arg->sharp = true;
-		while (*(arg->s) == '#')
-		{
-			arg->len++;
-			arg->s++;
-		}
+		arg->len++;
+		arg->s++;
 	}
-	return (true);
 }

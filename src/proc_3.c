@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 02:53:41 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 02:54:14 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 04:32:49 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@ t_sharp	ft_print_hex_shp(t_flags *arg, unsigned int h, char *prefix)
 	ft_check_arg(arg, h);
 	shp.zero = ft_count_zero(arg, ft_baselen(h, 16));
 	if (arg->sharp && h != 0)
+	{
+		arg->zero = false;
+		arg->wc = false;
+		arg->dot = false;
+		arg->max = false;
+		arg->min = false;
+		if (!arg->minus)
+			shp.zero = 0;
 		ft_putstr_res(arg, prefix);
+	}
 	return (shp);
 }
 

@@ -6,17 +6,16 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 22:29:59 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 02:57:53 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 05:57:06 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-bool	ft_process_n(va_list ap, t_flags *arg)
+void	ft_process_n(va_list ap, t_flags *arg)
 {
 	int	*n;
 
 	n = va_arg(ap, void *);
 	*n = arg->res;
-	return (true);
 }
