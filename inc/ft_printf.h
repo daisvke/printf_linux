@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 05:23:16 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 02:04:57 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdarg.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 
-# define SP_LIST "cspdiouxX%"
+# define SP_LIST "cspdiouxXn%"
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define ERROR -1
@@ -37,7 +37,14 @@ typedef struct s_flags
 	int		len;
 	char	*s;
 	int		res;
+	bool	sharp;
 }				t_flags;
+
+typedef struct s_sharp
+{
+	int		len;
+	int		zero;
+}				t_sharp;
 
 int		ft_baselen(size_t l, size_t base);
 void	ft_check_arg(t_flags *arg, long nb);
@@ -55,6 +62,7 @@ int		ft_printf(const char *fmt, ...)
 void	ft_process_c(va_list ap, t_flags *arg);
 void	ft_process_s(va_list ap, t_flags *arg);
 void	ft_process_di(va_list ap, t_flags *arg);
+bool	ft_process_n(va_list ap, t_flags *arg);
 void	ft_process_neg_nbr(t_flags *arg, int n, long l);
 void	ft_process_o(va_list ap, t_flags *arg);
 void	ft_process_p(va_list ap, t_flags *arg);
@@ -69,10 +77,13 @@ void	ft_putnbr_res(t_flags *arg, long long int nb);
 void	ft_putnchar(t_flags *arg, int c, size_t n);
 void	ft_putnstr(t_flags *arg, char *s, int n);
 void	ft_putstr_res(t_flags *arg, char *str);
+bool	ft_process_n(va_list ap, t_flags *arg);
 bool	ft_read_dot(t_flags *arg);
 void	ft_read_fmt(t_flags *arg, va_list ap, char *s);
+bool	ft_read_lm(t_flags *arg);
 bool	ft_read_nbr(t_flags *arg);
 bool	ft_read_sp(t_flags *arg);
+bool	ft_read_shp(t_flags *arg);
 bool	ft_read_wc(t_flags *arg, va_list ap);
 void	ft_read_whitespace(t_flags *arg);
 void	ft_read_zero_minus(t_flags *arg);

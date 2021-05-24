@@ -1,5 +1,5 @@
 EXEC		=	libftprintf.a
-CC			=	gcc $(CFLAGS)
+CC			=	clang $(CFLAGS)
 CFLAGS		=	-Wall -Werror -Wextra
 LIB			=	ar rcs
 INC			=	-Iinc
@@ -20,20 +20,35 @@ OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
+
+BSRC_DIR	=	bonus/
+BSRC_FILES	=	process.c \
+				read.c
+BSRC		=	$(addprefix $(BSRC_DIR), $(BSRC_FILES))
+BOBJ_DIR	=	bobj/
+BOBJ_FILES	=	$(BSRC_FILES:.c=.o)
+BOBJ		=	$(addprefix $(BOBJ_DIR), $(BOBJ_FILES))
+
 all: $(EXEC)
 
-$(EXEC): $(OBJ)
+$(EXEC): $(OBJ) $(BOBJ)
 	@$(MAKE) -C libft/
 	cp libft/libft.a $(EXEC)
-	$(LIB) $(EXEC) $(OBJ)
+	$(LIB) $(EXEC) $(OBJ) $(BOBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p obj
 	$(CC) $(INC) -c $< -o $@
 
+$(BOBJ_DIR)%.o: $(BSRC_DIR)%.c
+	@mkdir -p bobj
+	$(CC) $(INC) -c $< -o $@
+
+bonus: all
+
 clean:
 	$(MAKE) clean -C libft/
-	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ_DIR) $(BOBJ_DIR)
 
 fclean : clean
 	$(MAKE) fclean -C libft/
@@ -41,4 +56,4 @@ fclean : clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

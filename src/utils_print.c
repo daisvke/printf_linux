@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 23:02:13 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/23 22:51:10 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_redirect_sp(va_list ap, t_flags *arg)
 		ft_process_x(ap, arg);
 	else if (arg->sp == 'X')
 		ft_process_x2(ap, arg);
+	else if (arg->sp == 'n')
+		ft_process_n(ap, arg);
 	else if (arg->sp == '%')
 		ft_process_per(arg);
 }
@@ -52,9 +54,9 @@ int	ft_set_flags(t_flags *arg, char *s, va_list ap)
 	arg->s = s;
 	ft_read_zero_minus(arg);
 	ft_read_whitespace(arg);
-	if (!ft_read_wc(arg, ap) || !ft_read_nbr(arg) || \
-		!ft_read_dot(arg) || !ft_read_wc(arg, ap) || \
-		!ft_read_nbr(arg) || !ft_read_sp(arg))
+	if (!ft_read_wc(arg, ap) || !ft_read_shp(arg) || !ft_read_nbr(arg) \
+		|| !ft_read_dot(arg) || !ft_read_wc(arg, ap) || !ft_read_nbr(arg) \
+		|| !ft_read_lm(arg) || !ft_read_sp(arg))
 		ft_init_arg(arg);
 	if (arg->minus && arg->zero)
 		arg->zero = false;

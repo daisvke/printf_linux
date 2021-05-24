@@ -6,10 +6,10 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 00:00:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/04 03:00:48 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 01:28:25 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "../inc/ft_printf.h"
 
 void	ft_init_arg(t_flags *arg)
@@ -37,8 +37,10 @@ int	ft_printf(const char *fmt, ...)
 	if (!s)
 		return (ERROR);
 	va_start(ap, fmt);
+	ft_bzero(&arg, sizeof(arg));
 	ft_read_fmt(&arg, ap, s);
 	va_end(ap);
 	free(s);
+	s = NULL;
 	return (arg.res);
 }
