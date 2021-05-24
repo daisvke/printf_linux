@@ -6,12 +6,11 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 19:52:39 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 01:50:46 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 02:59:27 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
 
 bool	ft_read_lm(t_flags *arg)
 {
