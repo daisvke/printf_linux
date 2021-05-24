@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:25:30 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 06:18:37 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/05/24 22:11:23 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int		ft_baselen(size_t l, size_t base);
 void	ft_check_arg(t_flags *arg, long nb);
 int		ft_count_zero(t_flags *arg, int len);
 void	ft_init_arg(t_flags *arg);
+int		ft_numlen(t_flags *arg, long long int n);
+int		ft_pos_nbr_count_space(t_flags *arg, int len, int zero);
+int		ft_pos_nbr_count_zero(t_flags *arg, int len);
 void	ft_print_di_l(t_flags *arg, int n, long l);
 void	ft_print_hex(t_flags *arg, size_t nb, char *base);
 void	ft_print_oct(t_flags *arg, unsigned int nb);
