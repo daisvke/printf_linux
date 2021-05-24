@@ -9,6 +9,7 @@ SRC_DIR		=	src/
 SRC_FILES	=	ft_printf.c \
 				proc_1.c \
 				proc_2.c \
+				proc_3.c \
 				read.c \
 				utils_base.c \
 				utils_nbr.c \
