@@ -17,6 +17,7 @@ This work has been validated by the following tests:
 
 ### Description
 
+* The difference with the mac version of printf is how 'null' values are printed
 * The function is declared as follows : 
   ```
   int ft_printf(const char *, ...);
@@ -31,6 +32,6 @@ This work has been validated by the following tests:
   <img src="/screenshots/attribute.png" width="70%" />
 </p>
 * It does not take care of the buffer management like the real printf.<br />
-* It will manage the following conversions: cspdiouxX%.<br />
-* It will manage any combination of the following flags: '-0.*' and 
+* It will manage the following conversions: cspdiouxX%n.<br />
+* It will manage any combination of the following flags: '-0.*#' and 
   minimum fieldwidth with all conversions.
