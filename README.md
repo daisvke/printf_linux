@@ -2,7 +2,6 @@
 
 libftprintf.a is a library that contains ft_printf,
   a function that will mimic the real printf function.<br />
-This was originally a 42 school project.<br />
 
 This work has been validated by the following tests:
 * [42TESTERS-PRINTF](https://github.com/Mazoise/42TESTERS-PRINTF)
@@ -18,6 +17,7 @@ This work has been validated by the following tests:
 
 ### Description
 
+* The difference with the mac version of printf is how 'null' values are printed
 * The function is declared as follows : 
   ```
   int ft_printf(const char *, ...);
@@ -31,7 +31,7 @@ This work has been validated by the following tests:
   <p align="center">
   <img src="/screenshots/attribute.png" width="70%" />
 </p>
-* It does not take care of the buffer management like the real printf.
-* It will manage the following conversions: cspdiouxX%.
-* It will manage any combination of the following flags: '-0.*' and 
+* It does not take care of the buffer management like the real printf.<br />
+* It will manage the following conversions: cspdiouxX%n.<br />
+* It will manage any combination of the following flags: '-0.*#' and 
   minimum fieldwidth with all conversions.
