@@ -1,6 +1,6 @@
-EXEC		=	libftprintf.a
+NAME		=	libftprintf.a
 CC			=	clang $(CFLAGS)
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -fPIC
 LIB			=	ar rcs
 INC			=	-Iinc
 RM			=	rm -rf
@@ -30,30 +30,34 @@ BOBJ_DIR	=	bobj/
 BOBJ_FILES	=	$(BSRC_FILES:.c=.o)
 BOBJ		=	$(addprefix $(BOBJ_DIR), $(BOBJ_FILES))
 
-all: $(EXEC)
+all: $(NAME)
 
-$(EXEC): $(OBJ) $(BOBJ)
-	@$(MAKE) -C libft/
-	cp libft/libft.a $(EXEC)
-	$(LIB) $(EXEC) $(OBJ) $(BOBJ)
+$(NAME): $(OBJ) $(BOBJ)
+	@echo -n "\nNOW COMPILING LIBFT..."
+	@make -s -C libft/
+	@echo "\033[32m\t\t\t[OK]\033[0m"
+	@cp libft/libft.a $(NAME)
+	@echo -n "\nNOW GENERATING LIBFTPRINTF..."
+	@$(LIB) $(NAME) $(OBJ) $(BOBJ)
+	@echo "\033[32m\t\t[OK]\033[0m\n"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p obj
-	$(CC) $(INC) -c $< -o $@
+	@$(CC) $(INC) -c $< -o $@
 
 $(BOBJ_DIR)%.o: $(BSRC_DIR)%.c
 	@mkdir -p bobj
-	$(CC) $(INC) -c $< -o $@
+	@$(CC) $(INC) -c $< -o $@
 
 bonus: all
 
 clean:
-	$(MAKE) clean -C libft/
+	@make -s clean -C libft/
 	$(RM) $(OBJ_DIR) $(BOBJ_DIR)
 
 fclean : clean
-	$(MAKE) fclean -C libft/
-	$(RM) $(EXEC)
+	@make -s fclean -C libft/
+	$(RM) $(NAME)
 
 re: fclean all
 
