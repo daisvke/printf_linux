@@ -18,6 +18,7 @@ This work has been validated by the following tests:
 ### Install
 ```
 git clone git@github.com:daisvke/printf_linux.git --recursive
+make
 ```
 
 ### Description
