@@ -15,6 +15,11 @@ This work has been validated by the following tests:
   <img src="/screenshots/Tripouille_printfTester.png" width="50%" />
 </p>
 
+### Install
+```
+git clone git@github.com:daisvke/printf_linux.git --recursive
+```
+
 ### Description
 
 * The difference with the mac version of printf is how 'null' values are printed
