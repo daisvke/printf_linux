@@ -5,7 +5,7 @@ libftprintf.a is a library that contains ft_printf,
 
 ## Install
 ```
-git clone git@github.com:daisvke/printf_linux.git --recursive
+git clone --recursive git@github.com:daisvke/printf_linux.git
 make
 ```
 
