@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:03:40 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 22:14:14 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:27:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_pos_nbr_count_zero(t_flags *arg, int len)
 	}
 	if (arg->max < 0 && arg->zero)
 		zero = arg->min - len;
-//	if (arg->plus && !arg->max && !arg->space)
-//		zero--;
 	if (zero < 0)
 		zero = 0;
 	return (zero);
@@ -91,10 +89,6 @@ int	ft_pos_nbr_count_space(t_flags *arg, int len, int zero)
 	space = zero + len;
 	if (arg->len == 300)
 		return (5);
-/*	if (arg->plus)
-		space--;
-	if (!arg->plus && arg->space && (arg->max < arg->min))
-		space--;*/
 	return (space);
 }
 
@@ -110,8 +104,8 @@ void	ft_process_pos_nbr(t_flags *arg, long n)
 	int	space_len;
 
 	ft_check_arg(arg, n);
-	zero = ft_pos_nbr_count_zero(arg, ft_numlen(arg, n));
-	space_len = ft_pos_nbr_count_space(arg, ft_numlen(arg, n), zero);
+	zero = ft_pos_nbr_count_zero(arg, ft_nbrlen(n));
+	space_len = ft_pos_nbr_count_space(arg, ft_nbrlen(n), zero);
 	if (arg->space && !arg->plus)
 		ft_putnchar(arg, ' ', 1);
 	if (arg->minus)
@@ -139,17 +133,17 @@ void	ft_process_neg_nbr(t_flags *arg, int n, long l)
 	ft_check_arg(arg, 1);
 	if (arg->min && n != INT_MIN)
 		arg->min--;
-	zero = ft_count_zero(arg, ft_numlen(arg, l));
+	zero = ft_count_zero(arg, ft_nbrlen(l));
 	if (arg->minus)
 	{
 		ft_putnchar(arg, '-', 1);
 		ft_print_zero(arg, zero);
 		ft_print_di_l(arg, n, l);
-		ft_print_space(arg, zero + ft_numlen(arg, l));
+		ft_print_space(arg, zero + ft_nbrlen(l));
 	}
 	else
 	{
-		ft_print_space(arg, zero + ft_numlen(arg, l));
+		ft_print_space(arg, zero + ft_nbrlen(l));
 		ft_putnchar(arg, '-', 1);
 		ft_print_zero(arg, zero);
 		ft_print_di_l(arg, n, l);
