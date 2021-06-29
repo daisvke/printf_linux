@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 19:42:22 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/06/29 18:18:33 by root             ###   ########.fr       */
+/*   Created: 2021/03/17 15:27:34 by dtanigaw          #+#    #+#             */
+/*   Updated: 2021/05/21 01:11:58 by alien            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "libft.h"
 
-void	ft_putstr_res(t_flags *arg, char *str)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	if (str)
+	size_t	i;
+	size_t	j;
+
+	if (!*little)
+		return ((char *)big);
+	i = 0;
+	j = 0;
+	while (big[i] && (i + j < len))
 	{
-		while (*str)
+		if (big[i + j] == little[j])
 		{
-			write(1, &*str++, 1);
-			arg->res++;
+			if (!little[++j])
+				return ((char *)(&big[i]));
+		}
+		else
+		{
+			j = 0;
+			i++;
 		}
 	}
-}
-
-void	ft_putchar_res(t_flags *arg, char c)
-{
-	ft_putchar(c);
-	arg->res++;
-}
-
-void	ft_putnstr(t_flags *arg, char *s, int n)
-{
-	while (*s && n--)
-	{
-		ft_putchar(*s++);
-		arg->res++;
-	}
-}
-
-void	ft_putnchar(t_flags *arg, int c, size_t n)
-{
-	arg->res += n;
-	while (n--)
-		ft_putchar(c);
+	return (NULL);
 }

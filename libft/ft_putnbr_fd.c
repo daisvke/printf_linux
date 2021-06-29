@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 19:42:22 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/06/29 18:18:33 by root             ###   ########.fr       */
+/*   Created: 2021/03/21 02:27:07 by dtanigaw          #+#    #+#             */
+/*   Updated: 2021/03/21 02:34:18 by dtanigaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "libft.h"
 
-void	ft_putstr_res(t_flags *arg, char *str)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (str)
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
 	{
-		while (*str)
+		if (n < 0)
 		{
-			write(1, &*str++, 1);
-			arg->res++;
+			write(fd, "-", 1);
+			n = -n;
+		}
+		if (n < 10)
+			ft_putchar_fd(n + '0', fd);
+		else if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n % 10, fd);
 		}
 	}
-}
-
-void	ft_putchar_res(t_flags *arg, char c)
-{
-	ft_putchar(c);
-	arg->res++;
-}
-
-void	ft_putnstr(t_flags *arg, char *s, int n)
-{
-	while (*s && n--)
-	{
-		ft_putchar(*s++);
-		arg->res++;
-	}
-}
-
-void	ft_putnchar(t_flags *arg, int c, size_t n)
-{
-	arg->res += n;
-	while (n--)
-		ft_putchar(c);
 }

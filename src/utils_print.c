@@ -6,7 +6,7 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:20:33 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 06:18:37 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:18:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,6 @@ int	ft_set_flags(t_flags *arg, char *s, va_list ap)
 	if (arg->minus && arg->zero)
 		arg->zero = false;
 	return (arg->res);
-}
-
-void	ft_putchar_res(t_flags *arg, char c)
-{
-	ft_putchar(c);
-	arg->res++;
 }
 
 void	ft_read_fmt(t_flags *arg, va_list ap, char *s)

@@ -6,34 +6,11 @@
 /*   By: dtanigaw <dtanigaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 19:41:20 by dtanigaw          #+#    #+#             */
-/*   Updated: 2021/05/24 22:21:23 by dtanigaw         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:24:42 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
-int	ft_numlen(t_flags *arg, long long int n)
-{
-	int	len;
-
-	if (n == 0)
-		return (1);
-	len = 0;
-	if (n < 0)
-	{
-		n = -n;
-		len = ft_numlen(arg, n) + 1;
-	}
-	else
-	{
-		while (n > 0)
-		{
-			len += 1;
-			n = n / 10;
-		}
-	}
-	return (len);
-}
 
 void	ft_check_arg(t_flags *arg, long nb)
 {
@@ -75,17 +52,17 @@ void	ft_process_pos_nbr_u(t_flags *arg, long n)
 	int	zero;
 
 	ft_check_arg(arg, n);
-	zero = ft_count_zero(arg, ft_numlen(arg, n));
+	zero = ft_count_zero(arg, ft_nbrlen(n));
 	if (arg->minus)
 	{
 		ft_print_zero(arg, zero);
 		if (!(arg->dot && arg->max == 0))
 			ft_print_u(arg, n);
-		ft_print_space(arg, zero + ft_numlen(arg, n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 	}
 	else
 	{
-		ft_print_space(arg, zero + ft_numlen(arg, n));
+		ft_print_space(arg, zero + ft_nbrlen(n));
 		ft_print_zero(arg, zero);
 		if (!(arg->dot && arg->max == 0))
 			ft_print_u(arg, n);
