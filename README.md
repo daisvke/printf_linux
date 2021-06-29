@@ -31,7 +31,7 @@ This work has been validated by the following tests:
   <p align="center">
   <img src="/screenshots/attribute.png" width="70%" />
 </p>
-* It does not take care of the buffer management like the real printf.
-* It will manage the following conversions: cspdiouxX%.
+* It does not take care of the buffer management like the real printf.<br />
+* It will manage the following conversions: cspdiouxX%.<br />
 * It will manage any combination of the following flags: '-0.*' and 
   minimum fieldwidth with all conversions.
