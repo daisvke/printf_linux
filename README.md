@@ -3,13 +3,13 @@
 libftprintf.a is a library that contains ft_printf,
   a function that will mimic the real printf function.<br />
 
-### Install
+## Install
 ```
 git clone git@github.com:daisvke/printf_linux.git --recursive
 make
 ```
 
-### Description
+## Description
 
 * The difference with the mac version of printf is how 'null' values are printed
 * The function is declared as follows : 
@@ -28,7 +28,9 @@ make
 * It does not take care of the buffer management like the real printf.<br />
 * It will manage the following conversions: cspdiouxX%n.<br />
 * It will manage any combination of the following flags: '-0.*#' and 
-  minimum fieldwidth with all conversions.<br /><br />
+  minimum fieldwidth with all conversions.
+ 
+## Validation
  
   This work has been validated by the following tests:
 * [42TESTERS-PRINTF](https://github.com/Mazoise/42TESTERS-PRINTF)
