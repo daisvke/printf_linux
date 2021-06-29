@@ -2,7 +2,6 @@
 
 libftprintf.a is a library that contains ft_printf,
   a function that will mimic the real printf function.<br />
-This was originally a 42 school project.<br />
 
 This work has been validated by the following tests:
 * [42TESTERS-PRINTF](https://github.com/Mazoise/42TESTERS-PRINTF)
