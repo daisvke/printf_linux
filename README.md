@@ -24,7 +24,7 @@ make
   ```
   <p align="center">
   <img src="/screenshots/attribute.png" width="70%" />
-</p>
+  </p>
 * It does not take care of the buffer management like the real printf.<br />
 * It will manage the following conversions: cspdiouxX%n.<br />
 * It will manage any combination of the following flags: '-0.*#' and 
